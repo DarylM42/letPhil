@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Learn HTML easily">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="author" content="Daryl Murtha"
+        <title>Recipe Planner</title>
+    </head>
+    <body>
+        <h1>Main Recipe</h1>
+        <h2>Ingredients Table</h2>
+        <h3>Prep work</h3>
+        <h4>Cooking Time</h4>
+        <h5>Serving Size</h5>
+        <p>Healthy and delicious recipes for every meal.</p>
+
+            <div style="background-color: yellow; padding: 10px">
+                <h3>Div Section</h3>
+                <p>This is a block level container using "< div >".</p>
+            </div>
+
+        <p>
+            This shopping list contains a 
+            <span style="color: yellow; background-color: black">ingredients</span> for the recipe using < span > tag
+        </p>
+
+        <ul>
+            <li>Protein</li>
+            <li>Carbohydrates</li>
+            <li>Fruits</li>
+            <li>Vegetables</li>
+            <li>Dairy</li>
+            <li>Spices</li>
+        </ul>
+
+        <table border="5">
+            <tr>
+                <th>Food Item</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shopping Notes</th>
+            </tr>
+            <tr>
+                <td>Chicken</td>
+                <td>1</td>
+                <td>lbs</td>
+                <td>Buy fresh</td>
+            </tr>
+            <tr>
+                <td>Beef</td>
+                <td>2</td>
+                <td>lbs</td>
+                <td>Look for lean cuts</td>
+            </tr>
+            <tr>
+                <td>Potatoes</td>
+                <td>3</td>
+                <td>lbs</td>
+                <td>Choose firm ones</td>
+            </tr>
+            <tr>
+                <td>Carrots</td>
+                <td>1</td>
+                <td>lbs</td>
+                <td>Pick fresh and crisp</td>
+            </tr>
+            <tr>
+                <td>Broccoli</td>
+                <td>1</td>
+                <td>lbs</td>
+                <td>Look for vibrant green color</td>
+            </tr>
+        </table>
+
+        <br />
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required />
+            <br />
+            <label for="email">Email:</label>
+            <input type="email" id="email" required />
+            <br />
+            <label for="password">Password:</label>
+            <input type="password" id="password" required />
+            <br />    
+            <select id="country">
+                <option value="">Please Choose</option>
+                <option value="Pick Up">Pick Up</option>
+                <option value="Delivery">Delivery</option>
+                <option value="Dine In">Dine In</option>
+            </select>
+            <br />
+            <br />
+            <button type="submit">Checkout</button>
+        </form>
+    </body>
+</html>
