@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Community Event Signup</title>
+        <meta name="description" content="Sign up for our community games night event! Join us for a fun-filled evening of games, prizes, and camaraderie.">
+        <meta name="keywords" content="community event, games night, signup, prizes, leaderboard, award ceremony">
+        <meta name="author" content="Daryl Murtha">
+        <link rel="stylesheet" href="styles.css">  
+    </head>
+    <body>
+        <div class="page">
+            <header>
+                <h1>Community Games Night Signup</h1>
+                <p>
+                    September 30th, 2026<br />
+                    <span class="small">Boston, Massachusetts</span>
+                </p>   
+            </header>
+            <main>
+                <section class="card">
+                    <h2>Event Highlights</h2>
+                    <ul>
+                        <li>Exciting games for all ages</li>
+                        <li>Prizes for top performers</li>
+                        <li>Community bonding and fun</li>
+                        <li>Delicious food and refreshments</li>   
+                        <li>Special guest appearances</li> 
+                    </ul>
+                    <p class="small">Join us for an unforgettable evening of fun and games at our annual Community Games Night! Whether you're a seasoned gamer or just looking for a fun night out, there's something for everyone. Enjoy a variety of games, compete for exciting prizes, and connect with fellow community members. Don't miss out on the fun!</p>         
+                </section>
+                <section class="card">
+                    <h2>Schedule</h2>
+                    <table>
+                        <thead>
+                            <td>Time</td>
+                            <td>Activity</td>   
+                            <td>Notes</td>
+                            <td>Location</td>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>6:00 PM</td>
+                                <td>Registration</td>
+                                <td>Check-in and receive your game materials</td>
+                                <td>Main Lobby</td>
+                            </tr>
+                            <tr>
+                                <td>6:30 PM</td>
+                                <td>Opening Ceremony</td>
+                                <td>Welcome speech and event overview</td>
+                                <td>Main Hall</td>
+                            </tr>
+                            <tr>
+                                <td>7:00 PM</td>
+                                <td>Game Rounds</td>
+                                <td>Compete in various games for points and prizes</td>
+                                <td>Game Area</td>
+                            </tr>
+                            <tr>
+                                <td>9:00 PM</td>
+                                <td>Award Ceremony</td>
+                                <td>Announce winners and distribute prizes</td>
+                                <td>Main Hall</td>
+                            </tr>
+                            <tr>
+                                <td>9:30 PM</td>
+                                <td>Closing Remarks</td>
+                                <td>Thank you for participating and event wrap-up</td>
+                                <td>Main Hall</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="card">
+                    <h3>Signup</h3>
+                    <form action="submit">
+                        <label for="fullname">Full Name:</label>
+                        <input type="text" name="fullname" id="fullname" />
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" />
+                        <label for=""tickettype">Ticket Type:</label>
+                        <select name="tickettype" id="tickettype">
+                            <option value="general">General Admission</option>
+                            <option value="vip">VIP</option>
+                        </select>
+                        <p>Dietary preference</p>
+                        <input type="radio" id="radio none" name="diet" value="none" checked>
+                        <label for="radio none">None</label><br>
+                        <input type="radio" id="radio vegetarian" name="diet" value="vegetarian">
+                        <label for="radio vegetarian">Vegetarian</label><br>
+                        <input type="radio" id="radio vegan" name="diet" value="vegan">
+                        <label for="radio vegan">Vegan</label><br>
+                        <input type="radio" id="radio glutenfree" name="diet" value="glutenfree">
+                        <label for="radio glutenfree">Gluten-Free</label><br>
+                        <input type="radio" id="radio lactose" name="diet" value="lactose">
+                        <label for="radio lactose">Lactose Intolerant</label>
+                        <br />
+                        <br />
+                        <input type="submit" value="Submit" />
+                    </form>
+                </section>
+            </main>
+            <footer>
+                <p>&copy; 2026 Community Games Night. All rights reserved.</p>
+            </footer>
+    </body>
+</html>
