@@ -2,97 +2,115 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="description" content="Learn HTML easily">
-        <meta name="keywords" content="HTML, CSS, JavaScript">
-        <meta name="author" content="Daryl Murtha"
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Recipe Planner</title>
+        <meta name="description" content="Plan your meals and organize your shopping list with ease.">
+        <meta name="keywords" content="recipe, meal planning, shopping list, ingredients">
+        <meta name="author" content="Daryl Murtha">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1>Main Recipe</h1>
-        <h2>Ingredients Table</h2>
-        <h3>Prep work</h3>
-        <h4>Cooking Time</h4>
-        <h5>Serving Size</h5>
-        <p>Healthy and delicious recipes for every meal.</p>
-
-            <div style="background-color: yellow; padding: 10px">
-                <h3>Div Section</h3>
-                <p>This is a block level container using "< div >".</p>
-            </div>
-
-        <p>
-            This shopping list contains a 
-            <span style="color: yellow; background-color: black">ingredients</span> for the recipe using < span > tag
-        </p>
-
-        <ul>
-            <li>Protein</li>
-            <li>Carbohydrates</li>
-            <li>Fruits</li>
-            <li>Vegetables</li>
-            <li>Dairy</li>
-            <li>Spices</li>
-        </ul>
-
-        <table border="5">
-            <tr>
-                <th>Food Item</th>
-                <th>Quantity</th>
-                <th>Unit</th>
-                <th>Shopping Notes</th>
-            </tr>
-            <tr>
-                <td>Chicken</td>
-                <td>1</td>
-                <td>lbs</td>
-                <td>Buy fresh</td>
-            </tr>
-            <tr>
-                <td>Beef</td>
-                <td>2</td>
-                <td>lbs</td>
-                <td>Look for lean cuts</td>
-            </tr>
-            <tr>
-                <td>Potatoes</td>
-                <td>3</td>
-                <td>lbs</td>
-                <td>Choose firm ones</td>
-            </tr>
-            <tr>
-                <td>Carrots</td>
-                <td>1</td>
-                <td>lbs</td>
-                <td>Pick fresh and crisp</td>
-            </tr>
-            <tr>
-                <td>Broccoli</td>
-                <td>1</td>
-                <td>lbs</td>
-                <td>Look for vibrant green color</td>
-            </tr>
-        </table>
-
-        <br />
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" required />
-            <br />
-            <label for="email">Email:</label>
-            <input type="email" id="email" required />
-            <br />
-            <label for="password">Password:</label>
-            <input type="password" id="password" required />
-            <br />    
-            <select id="country">
-                <option value="">Please Choose</option>
-                <option value="Pick Up">Pick Up</option>
-                <option value="Delivery">Delivery</option>
-                <option value="Dine In">Dine In</option>
-            </select>
-            <br />
-            <br />
-            <button type="submit">Checkout</button>
-        </form>
+        <div class="page-header">
+            <header>
+                <h1>Recipe Planner</h1>
+                <p>Plan your meals and <span class="emphasize">organize your shopping list</span>  with ease.</p>   
+            </header>
+            <main>
+                <section class="card">
+                    <h2>Today's Plan</h2>
+                    <ul>
+                        <li>Pancakes with syrup</li>
+                        <li>Grilled chicken salad</li>
+                        <li>Spaghetti Bolognese</li>
+                    </ul>
+                    <ol>
+                        <li>Milk</li>
+                        <li>Eggs</li>
+                        <li>Flour</li>
+                        <li>Chicken breast</li>
+                        <li>Lettuce</li>
+                        <li>Tomatoes</li>
+                        <li>Ground beef</li>
+                        <li>Spaghetti noodles</li>
+                    </ol>
+                </section>
+                <section class="card">
+                    <h2>Ingredients Table</h2>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Ingredient</th>
+                                <th>Amount</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Milk</td>
+                                <td>1 cup</td>
+                                <td>Use whole milk for best results</td>
+                            </tr>
+                            <tr>
+                                <td>Eggs</td>
+                                <td>2</td>
+                                <td>Preferably free-range</td>
+                            </tr>
+                            <tr>
+                                <td>Flour</td>
+                                <td>2 cups</td>
+                                <td>All-purpose flour works best</td>
+                            </tr>
+                            <tr>
+                                <td>Chicken breast</td>
+                                <td>200g</td>
+                                <td>Boneless and skinless</td>
+                            </tr>
+                            <tr>
+                                <td>Lettuce</td>
+                                <td>1 head</td>
+                                <td>Fresh and crisp</td>
+                            </tr>
+                            <tr>
+                                <td>Tomatoes</td>
+                                <td>2</td>
+                                <td>Ripe and juicy</td>
+                            </tr>
+                            <tr>
+                                <td>Ground beef</td>
+                                <td>300g</td>
+                                <td>Lean ground beef works best</td>
+                            </tr>
+                            <tr>
+                                <td>Spaghetti noodles</td>
+                                <td>200g</td>
+                                <td>Use durum wheat for best texture</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="card">
+                    <h2>Shopping Note</h2>
+                    <form>
+                        <label for="Item">Item:</label>
+                        <input type="text" name="item" placeholder="Example: Milk" required>
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" name="quantity" id="quantity" min="1" max="10" required>
+                        <label for="category">Category:</label>
+                        <select name="category" id="category">
+                            <option value="">Please Choose</option>
+                            <option value="Dairy">Dairy</option>
+                            <option value="Produce">Produce</option>
+                            <option value="Meat">Meat</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <label for="extranotes">Extra Notes:</label>
+                        <input type="text" name="extranotes" id="extranotes" placeholder="Add Extra Notes Here">
+                        <button type="submit">Add to List</button>
+                    </form>
+            </main>
+            <footer>
+                <p>&copy; 2026 Recipe Planner. All rights reserved.</p>
+            </footer>
+        </div>      
     </body>
 </html>
