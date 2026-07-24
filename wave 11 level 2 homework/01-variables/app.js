@@ -83,8 +83,8 @@ console.log(favoriteMovie);
 
 const productName = "Cool Ranch";
 const productBrand = "Doritos";
-let productPrice = 4.99
-let inStock = true;
+const productPrice = 4.99
+const inStock = true;
 
 console.log(productName + " by " + productBrand + " - $" + productPrice);
 
@@ -169,7 +169,7 @@ console.log(highScore);
 // Expected format: "TaskMaster v3 — built by [your name]"
 
 const appName = "TaskMaster";
-let version = 3;
+const version = 3;
 const authorName = "Daryl Murtha";
 
 console.log(appName + " v" + version + " - built by " + authorName);
