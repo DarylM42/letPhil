@@ -29,11 +29,11 @@
 //
 // Log: "Student: " + studentName
 
-const studentName = "Daryl Murtha";
-const maxScore = 100;
-let passingScore = 60;
-let earnedScore = 73;
-const isExtraCredit = false;
+const studentName = "Daryl Murtha"; // My name is a constant value
+const maxScore = 100; // setting the maxScore to a const variable because we do not want to reassign it.
+const passingScore = 60; // setting passingScore to const because that is a constant value for passing.
+let earnedScore = 73; // this is a value that could and most likely will be reassigned.
+const isExtraCredit = false; // const because we don't want to change this.
 
 console.log(`Student:  ${studentName}`);
 
@@ -50,9 +50,9 @@ console.log(`Student:  ${studentName}`);
 // Then log the final earnedScore.
 
 const extraCreditPoints = 5;
-earnedScore += extraCreditPoints;
 
 if (isExtraCredit) {
+    earnedScore += extraCreditPoints;
     console.log(`Extra credit applied! New score:  ${earnedScore}`);
 } else {
     console.log(`No extra credit`);
