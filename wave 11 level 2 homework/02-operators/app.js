@@ -23,12 +23,12 @@
 //
 // Log: gameName + " — Player: " + playerName
 
-const gameName = "Space Blaster";
-const playerName = "Daryl Murtha";
-let playerScore = 0;
-let highScore = 850;
-let pointsPerKill = 25;
-let livesRemaining = 3;
+const gameName = "Space Blaster"; // const because the name of the game is fixed.
+const playerName = "Daryl Murtha"; // const because my name is fixed.
+let playerScore = 0; // let because the playerScore will change as the player plays the game
+let highScore = 850; // let so that we can reassign it later if we want to raise the highScore
+const pointsPerKill = 25; // const because it is a set number, I would argue speaking from a game play perspective leaving this as let allows later flexiblility in game design to make the game harder or easier but I understand for this exercise why it is a const.
+let livesRemaining = 3; // chose let to enable flexibility in the game.
 
 console.log(gameName + " - Player: " + playerName);
 
@@ -111,7 +111,7 @@ console.log(playerScore >= highScore);
 
 console.log(playerScore > highScore);
 
-playerScore = highScore;
+highScore = playerScore;
 
 console.log("New high score: " + highScore);
 
@@ -177,6 +177,8 @@ const shotsHit = 31;
 
 const accuracyDecimal = shotsHit / shotsFired;
 const accuracyPercent = accuracyDecimal * 100;
+
+console.log(playerName + " accuracy: " + accuracyPercent + "%");
 
 console.log(accuracyPercent >= 75);
 // Using the toFixed() method such as toFixed(2) would round the percentage to 2 decimal places.
