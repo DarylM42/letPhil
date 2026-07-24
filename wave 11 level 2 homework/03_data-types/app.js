@@ -1,348 +1,184 @@
 // ============================================================
-// 🏠  DATA TYPES — HOMEWORK  |  MENTEE VERSION
+// 🏠  OPERATORS — HOMEWORK
 // ============================================================
-// Mini Project: Receipt Generator
+// Mini Project: Score Tracker
 //
-// Build a formatted shopping receipt using template literals,
-// string methods, and type conversion.
-//
-// RULE: No functions, no conditionals, no loops, no arrays.
-// Everything is sequential — declare variables, log results.
-// You only know Lessons 1, 2, and 3.
-//
-// All output goes to the console.
+// You are building the logic for a simple game score tracker.
+// Use variables + operators — everything from Lessons 1 and 2.
+// All output goes to the console. No HTML edits needed.
 // ============================================================
 
-console.log("=== RECEIPT GENERATOR ===\n");
+// ----------------------------------------------------------
+// TASK 1 — Set up the game
+// ----------------------------------------------------------
+// Declare the following variables using the correct keyword.
+// Add a comment on each line explaining why you chose const or let.
+//
+//   gameName       → "Space Blaster"  (string)
+//   playerName     → your name        (string)
+//   playerScore    → 0                (number)
+//   highScore      → 850              (number)
+//   pointsPerKill  → 25               (number)
+//   livesRemaining → 3                (number)
+//
+// Log: gameName + " — Player: " + playerName
 
+const gameName = "Space Blaster"; // const because the name of the game is fixed.
+const playerName = "Daryl Murtha"; // const because my name is fixed.
+let playerScore = 0; // let because the playerScore will change as the player plays the game
+let highScore = 850; // let so that we can reassign it later if we want to raise the highScore
+const pointsPerKill = 25; // const because it is a set number, I would argue speaking from a game play perspective leaving this as let allows later flexiblility in game design to make the game harder or easier but I understand for this exercise why it is a const.
+let livesRemaining = 3; // chose let to enable flexibility in the game.
 
-// ============================================================
-// THE RAW DATA — messy, as it might come from a form
-// ============================================================
-const storeName     = "  PIXEL GADGETS  ";
-const customerName  = "alex rivera";
-const customerEmail = "  ALEX@PIXELGADGETS.COM  ";
-
-const item1Name     = "wireless headphones";
-const item1Price    = "79.99";          // string — from form input
-const item1Qty      = 2;
-
-const item2Name     = "usb-c hub";
-const item2Price    = "44.99";          // string — from form input
-const item2Qty      = 1;
-
-const item3Name     = "desk lamp";
-const item3Price    = "34.99";          // string — from form input
-const item3Qty      = 3;
-
-const discountCode  = "  SAVE10  ";     // messy whitespace
-const taxRate       = 0.08;
-const orderDate     = "2025-01-15";
-const orderStatus   = null;             // not yet processed
-
+console.log(gameName + " - Player: " + playerName);
 
 // ----------------------------------------------------------
-// TASK 1 — Clean the store and customer data
+// TASK 2 — Earn points
 // ----------------------------------------------------------
-// The store name and customer name need formatting.
+// The player destroys 6 enemies in a row.
+// Use *= or a calculation to find totalEarned (6 * pointsPerKill).
+// Then use += to add totalEarned to playerScore.
 //
-// a) Clean storeName: trim whitespace, then title-case it.
-//    Title case = first letter of each word uppercase, rest lowercase.
-//    For a two-word name: split at the space manually using .slice()
-//    OR just clean the whole thing with .trim().toLowerCase() and
-//    then manually capitalise the first letter of each word:
-//      const storeWords = storeName.trim().toLowerCase();
-//      const cleanStore =
-//        storeWords[0].toUpperCase() + storeWords.slice(1, 5) +
-//        " " + storeWords[5].toUpperCase() + storeWords.slice(6);
-//    Actually — that's too complex without split/arrays.
-//    Simpler: just trim and use .toLowerCase(), then capitalise the first letter:
-//      const cleanStore = storeName.trim().toLowerCase();
-//      const titleStore = cleanStore[0].toUpperCase() + cleanStore.slice(1);
-//    Log: `Store: ${titleStore}`
-//
-// b) Clean customerName: trim and title-case using the same approach.
-//    Log: `Customer: ${titleCustomer}`
-//
-// c) Clean customerEmail: trim and lowercase.
-//    Log: `Email: ${cleanEmail}`
-//
-// d) Clean discountCode: trim and uppercase.
-//    Log: `Discount code: ${cleanCode}`
+// Log: "Earned: " + totalEarned + " points"
+// Log: "Score: " + playerScore
 
-console.log("--- Task 1: Clean the Data ---");
-// your code here
-const cleanStore = storeName.trim().toLowerCase();
-const titleStore = cleanStore[0].toUpperCase() + cleanStore.slice(1);
-console.log(`Store: ${titleStore}`);
+let totalEarned = 6;
+totalEarned *= pointsPerKill;
+playerScore += totalEarned;
 
-const cleanCustomer = customerName.trim().toLowerCase();
-const titleCustomer = cleanCustomer[0].toUpperCase() + cleanCustomer.slice(1);
-console.log(`Customer: ${titleCustomer}`);
-
-const cleanEmail = customerEmail.trim().toLowerCase();
-console.log(`Email: ${cleanEmail}`);
-
-const cleanCode = discountCode.trim().toUpperCase();
-console.log(`Discount code: ${cleanCode}`);
-
+console.log("Earned: " + totalEarned + " points");
+console.log("Score: " + playerScore);
 
 // ----------------------------------------------------------
-// TASK 2 — Convert prices to numbers
+// TASK 3 — Take damage
 // ----------------------------------------------------------
-// All three prices are strings. Convert them to numbers
-// so you can do arithmetic.
+// The player gets hit twice and loses a life each time.
+// Use -= to subtract 1 from livesRemaining twice.
 //
-// a) const price1 = parseFloat(item1Price);
-//    Log: `${item1Name} price type before: ${typeof item1Price}`
-//    Log: `${item1Name} price type after:  ${typeof price1}`
-//
-// b) Do the same for item2Price and item3Price.
-//    Log the type before and after for each.
-//
-// c) Log all three prices to confirm they converted correctly.
+// Log: "Lives remaining: " + livesRemaining
+// Then log the result of: livesRemaining > 0
+// Write a comment: what does true/false mean in this context?
 
-console.log("\n--- Task 2: Convert Prices ---");
-// your code here
-const price1 = parseFloat(item1Price);
-console.log(`${item1Name} price type before: ${typeof item1Price}`);
-console.log(`${item1Name} price type after: ${typeof price1}`);
+livesRemaining -= 1;
+livesRemaining -= 1;
 
-const price2 = parseFloat(item2Price);
-console.log(`${item2Name} price type before: ${typeof item2Price}`);
-console.log(`${item2Name} price type after: ${typeof price2}`);
-
-const price3 = parseFloat(item3Price);
-console.log(`${item3Name} price type before: ${typeof item3Price}`);
-console.log(`${item3Name} price type after: ${typeof price3}`);
-
-console.log(`Price 1: ${typeof price1}`);
-console.log(`Price 2: ${typeof price2}`);
-console.log(`Price 3: ${typeof price3}`);
+console.log("Lives remaining: " + livesRemaining);
+console.log(livesRemaining > 0); 
+// The result of livesRemaining showing as true is because 
+// the initial livesRemaining value was 3 and we subtracted 1 twice resulting in 1 remaining 
+// which is greater than 0.
 
 // ----------------------------------------------------------
-// TASK 3 — Calculate line totals
+// TASK 4 — Level bonus
 // ----------------------------------------------------------
-// A line total = price × quantity.
+// The player completes a level and earns a 50% score bonus.
+// Declare a const called levelBonus = playerScore * 0.5
+// Add levelBonus to playerScore using +=.
 //
-// a) const line1Total = price1 * item1Qty;
-//    Log: `${item1Name} × ${item1Qty} = $${line1Total.toFixed(2)}`
-//    (.toFixed(2) rounds to 2 decimal places and returns a string)
-//
-// b) Do the same for items 2 and 3.
-//
-// c) Calculate the subtotal (before tax):
-//    const subtotal = line1Total + line2Total + line3Total;
-//    Log: `Subtotal: $${subtotal.toFixed(2)}`
-//
-// Write a comment: why couldn't you calculate line1Total
-// before converting item1Price to a number?
+// Log: "Bonus: " + levelBonus
+// Log: "Score after bonus: " + playerScore
 
-console.log("\n--- Task 3: Line Totals ---");
-// your code here
-const line1Total = price1 * item1Qty;
-console.log(`${item1Name} x ${item1Qty} = $${line1Total.toFixed(2)}`);
+const levelBonus = playerScore * 0.5;
+playerScore += levelBonus;
 
-const line2Total = price2 * item2Qty;
-console.log(`${item2Name} x ${item2Qty} = $${line2Total.toFixed(2)}`);
-
-const line3Total = price3 * item3Qty;
-console.log(`${item3Name} x ${item3Qty} = $${line3Total.toFixed(2)}`);
-
-const subtotal = line1Total + line2Total + line3Total;
-console.log(`Subtotal: $${subtotal.toFixed(2)}`);
-// line1Total could not be calculated prior to converting item1Price to a number because
-// strings are not able to be used in arithmatic equations only numbers.
+console.log("Bonus: " + levelBonus);
+console.log("Score after bonus: " + playerScore);
 
 // ----------------------------------------------------------
-// TASK 4 — Apply discount and tax
+// TASK 5 — Check the high score
 // ----------------------------------------------------------
-// The SAVE10 code gives 10% off the subtotal.
+// Log the result of each comparison. Write your prediction
+// as a comment BEFORE running the code.
 //
-// a) const discountAmount = subtotal * 0.10;
-//    const discountedSubtotal = subtotal - discountAmount;
-//    Log: `Discount (10%): -$${discountAmount.toFixed(2)}`
-//    Log: `After discount: $${discountedSubtotal.toFixed(2)}`
-//
-// b) const taxAmount = discountedSubtotal * taxRate;
-//    const grandTotal = discountedSubtotal + taxAmount;
-//    Log: `Tax (8%): $${taxAmount.toFixed(2)}`
-//    Log: `Grand Total: $${grandTotal.toFixed(2)}`
-//
-// c) Check if the discount code is valid:
-//    const isValidCode = discountCode.trim().toUpperCase() === "SAVE10";
-//    Log: `Discount code valid: ${isValidCode}`
-//    (No if/else yet — just log the boolean value)
+//   playerScore > highScore       → prediction: false
+//   playerScore === highScore     → prediction: false
+//   playerScore >= highScore      → prediction: false
 
-console.log("\n--- Task 4: Discount and Tax ---");
-// your code here
-const discountAmount = subtotal * 0.10;
-const discountedSubtotal = subtotal - discountAmount;
-console.log(`Discount (10%): -$${discountAmount.toFixed(2)}`);
-console.log(`After discount: $${discountedSubtotal.toFixed(2)}`);
-
-const taxAmount = discountedSubtotal * taxRate;
-const grandTotal = discountedSubtotal + taxAmount;
-console.log(`Tax (8%): $${taxAmount.toFixed(2)}`);
-console.log(`Grand Total: $${grandTotal.toFixed(2)}`);
-
-const isValidCode = discountCode.trim().toUpperCase() === "SAVE10";
-console.log(`Discount code valid: ${isValidCode}`);
+console.log(playerScore > highScore);
+console.log(playerScore === highScore);
+console.log(playerScore >= highScore);
 
 // ----------------------------------------------------------
-// TASK 5 — Type checks and edge cases
+// TASK 6 — Update the high score
 // ----------------------------------------------------------
+// If playerScore is greater than highScore, the high score
+// should be updated. We haven't learned if/else yet — so
+// just check the comparison result and do it manually:
 //
-// a) Log the typeof each calculated total to confirm they're numbers:
-//    Log: `typeof line1Total: ${typeof line1Total}`
-//    Log: `typeof grandTotal: ${typeof grandTotal}`
-//
-// b) Check the orderStatus:
-//    Log: `orderStatus: ${orderStatus}`
-//    Log: `typeof orderStatus: ${typeof orderStatus}`
-//    Log: `Boolean(orderStatus): ${Boolean(orderStatus)}`
-//    Write a comment: what does null mean here in context?
-//
-// c) Demonstrate the coercion trap:
-//    Log: `item1Price + item2Price = ${item1Price + item2Price}`
-//    (The RAW strings, before converting — what do you get?)
-//    Write a comment: why does this produce "79.9944.99"?
+// Log: playerScore > highScore   (is it true or false right now?)
+// Then reassign highScore to playerScore.
+// Log: "New high score: " + highScore
 
-console.log("\n--- Task 5: Type Checks ---");
-// your code here
-console.log(`typeof line1Total: ${typeof line1Total}`);
-console.log(`typeof grandTotal: ${typeof grandTotal}`);
+console.log(playerScore > highScore);
 
-console.log(`orderStatus: ${orderStatus}`);
-console.log(`typeof orderStatus: ${typeof orderStatus}`); // JS error for a type set to null
-console.log(`Boolean(orderStatus): ${Boolean(orderStatus)}`);
-// null means the type was purposely set to nothing which is why it is false for Boolean
+highScore = playerScore;
 
-console.log(`item1Price + item2Price = ${item1Price + item2Price}`);
-// This produced "79944.99" because RAW strings are not automatically converted to numbers
-// with the addition function they are smushed together into a single string which is why
-// we need to convert them to numbers first so that the proper math equation can happen.
+console.log("New high score: " + highScore);
 
 // ----------------------------------------------------------
-// TASK 6 — Build the receipt header
+// TASK 7 — Time remaining (modulus practice)
 // ----------------------------------------------------------
-// Use a multiline template literal to build a receipt header.
+// The game has 245 seconds on the clock.
+// Declare a const called totalSeconds = 245
+// Use / to get minutes (totalSeconds / 60) → store in a const
+// Use % to get leftover seconds (totalSeconds % 60) → store in a const
 //
-// const receiptHeader = `
-// ================================
-// ${titleStore}
-// ================================
-// Customer: ${titleCustomer}
-// Email:    ${cleanEmail}
-// Date:     ${orderDate}
-// Code:     ${cleanCode}
-// ================================`;
-//
-// Log receiptHeader.
-//
-// (Use the clean variables from Task 1)
+// Log: "Time left: " + minutes + " min " + secondsLeft + " sec"
+// ⚠️ minutes will be a decimal — that's expected. We'll fix it in Data Types.
 
-console.log("\n--- Task 6: Receipt Header ---");
-// your code here
-const receiptHeader = `
-===================================
-${titleStore}
-===================================
-Customer: ${titleCustomer}
-Email:    ${cleanEmail}
-Date:     ${orderDate}
-Code:     ${cleanCode}
-===================================`;
-console.log(`${receiptHeader}`);
+const totalSeconds = 245;
+const minutes = totalSeconds / 60;
+const secondsLeft = totalSeconds % 60;
+
+console.log("Time left: " + minutes + " min " + secondsLeft + " sec");
 
 // ----------------------------------------------------------
-// TASK 7 — Build the receipt body
+// TASK 8 — Connect the dots summary
 // ----------------------------------------------------------
-// Build the line items section as a multiline template literal.
+// Declare a const called startScore = 0
+// Declare a const called endScore   = playerScore (your current playerScore)
+// Declare a const called improvement = endScore - startScore
 //
-// Format each line: "Item Name           x qty    $total"
-// Use .padEnd() to align the columns:
-//   item1Name.padEnd(20) pads the string to 20 characters with spaces
-//   This makes all item names the same width for alignment
+// Log: playerName + " improved by " + improvement + " points this session."
 //
-// const receiptBody = `
-// ${item1Name.padEnd(22)}x${item1Qty}    $${line1Total.toFixed(2)}
-// ${item2Name.padEnd(22)}x${item2Qty}    $${line2Total.toFixed(2)}
-// ${item3Name.padEnd(22)}x${item3Qty}    $${line3Total.toFixed(2)}
-// --------------------------------
-// Subtotal:              $${subtotal.toFixed(2)}
-// Discount (SAVE10 10%): -$${discountAmount.toFixed(2)}
-// Tax (8%):              $${taxAmount.toFixed(2)}
-// --------------------------------
-// TOTAL:                 $${grandTotal.toFixed(2)}`;
-//
-// Log receiptBody.
+// Then log whether the player beat the original highScore (850):
+// endScore > 850
 
-console.log("\n--- Task 7: Receipt Body ---");
-// your code here
-const receiptBody = `
-${item1Name.padEnd(22)}x${item1Qty}    $${line1Total.toFixed(2)}
-${item2Name.padEnd(22)}x${item2Qty}    $${line2Total.toFixed(2)}
-${item3Name.padEnd(22)}x${item3Qty}    $${line3Total.toFixed(3)}
--------------------------------
-Subtotal:              $${subtotal.toFixed(2)}
-Discount (SAVE10 10%): -$${discountAmount.toFixed(2)}
-Tax (8%):              $${taxAmount.toFixed(2)}
--------------------------------
-TOTAL:                 $${grandTotal.toFixed(2)}`;
-console.log(`${receiptBody}`);
+const startScore = 0;
+const endScore = playerScore;
+const improvement = endScore - startScore;
+
+console.log(playerName + " improved by " + improvement + " points this session.");
+
+console.log(endScore > 850);
 
 // ----------------------------------------------------------
-// TASK 8 — Connect the dots: full receipt
+// ⭐ STRETCH GOAL — Accuracy Rating
 // ----------------------------------------------------------
-// Combine the header and body into one final receipt string.
+// Declare these variables:
+//   const shotsFired = 40
+//   const shotsHit   = 31
 //
-// const fullReceipt = receiptHeader + receiptBody;
-// Log fullReceipt.
+// Calculate:
+//   const accuracyDecimal = shotsHit / shotsFired
+//   const accuracyPercent = accuracyDecimal * 100
 //
-// Then answer these as comments:
-// Q1: What lesson taught you about the + operator? (Lesson 2)
-// Q2: What lesson taught you to clean string data? (Lesson 3 — today)
-// Q3: What would you need to learn to add a discount ONLY IF the
-//     code is valid? (Conditionals — Lesson 4)
+// Log: playerName + " accuracy: " + accuracyPercent + "%"
 //
-// The last question previews exactly where the curriculum goes next.
+// Then log whether accuracy is above 75%:
+//   accuracyPercent >= 75
+//
+// Bonus question (write as a comment):
+// accuracyPercent will have many decimal places. What do you think
+// we could use to round it to 2 decimal places? (Hint: coming in Data Types)
 
-console.log("\n--- Task 8: Full Receipt ---");
-// your code here
-const fullReceipt = receiptHeader + receiptBody;
-console.log(`${fullReceipt}`);
+const shotsFired = 40;
+const shotsHit = 31;
 
-// ----------------------------------------------------------
-// ⭐ STRETCH GOAL — receipt stats
-// ----------------------------------------------------------
-// Using only what you know (variables, operators, string methods):
-//
-// a) Count the total number of items (not products, but units):
-//    const totalItems = item1Qty + item2Qty + item3Qty;
-//    Log: `Total items: ${totalItems}`
-//
-// b) Find the most expensive item (without conditionals — just math):
-//    const highestPrice = Math.max(price1, price2, price3);
-//    Log: `Highest price: $${highestPrice.toFixed(2)}`
-//    (Math.max() is a built-in that works like an operator here)
-//
-// c) Calculate the average item price:
-//    const avgPrice = (price1 + price2 + price3) / 3;
-//    Log: `Average price: $${avgPrice.toFixed(2)}`
-//
-// d) Check if the customer's email domain is "pixelgadgets.com":
-//    const isInternalEmail = cleanEmail.endsWith("@pixelgadgets.com");
-//    Log: `Internal customer: ${isInternalEmail}`
+const accuracyDecimal = shotsHit / shotsFired;
+const accuracyPercent = accuracyDecimal * 100;
 
-const totalItems = item1Qty + item2Qty + item3Qty;
-console.log(`Total nubmer of items: ${totalItems}`);
+console.log(playerName + " accuracy: " + accuracyPercent + "%");
 
-const highestPrice = Math.max(price1, price2, price3);
-console.log(`Highest price: $${highestPrice.toFixed(2)}`);
-
-const avgPrice = (price1 + price2 + price3) / 3;
-console.log(`Average price: $${avgPrice.toFixed(2)}`);
-
-const isInternalEmail = cleanEmail.endsWith("@pixelgadgets.com");
-console.log(`Internal customer: ${isInternalEmail}`);
+console.log(accuracyPercent >= 75);
+// Using the toFixed() method such as toFixed(2) would round the percentage to 2 decimal places.
