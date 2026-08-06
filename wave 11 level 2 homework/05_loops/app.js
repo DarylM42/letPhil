@@ -38,9 +38,9 @@
 // Log: "🛒 " + storeName + " — Cart started"
 
 const storeName = "QuickShop"; // declared variable const because the store name is fixed.
-let budget = 100; // declared variable let because I know from finance that budgets need to change.
+const budget = 100; // declared variable const because it remains the same.
 const itemLimit = 30; // declared variable const because it is a limit which tells me we want it to be constant.
-const discountThresold = 80; // declared variable const because a thresold is similar to a limit.
+const discountThreshold = 80; // declared variable const because a threshold is similar to a limit.
 const discountRate = 0.10; // declared variable const as a fixed rate.
 let cartTotal = 0; // declared a let variable so we can reassign it later.
 let itemsAdded = 0; // declared a let variable so we can reassign it as we work through the project.
@@ -109,7 +109,7 @@ for (let i = 1; i <= 6; i++) {
     } else {
         cartTotal += currentPrice;
         itemsAdded++;
-        console.log("✅ Item " + i + " added ($" + currentPrice + " ) | Cart: $" + cartTotal);
+        console.log("✅ Item " + i + " added ($" + currentPrice + ") | Cart: $" + cartTotal);
     }
 }
 
@@ -126,7 +126,7 @@ for (let i = 1; i <= 6; i++) {
 //   ELSE:
 //     - log: "No discount applied. Total: $" + cartTotal
 
-if (cartTotal > discountThresold) {
+if (cartTotal > discountThreshold) {
     const discountAmount = cartTotal * discountRate;
     cartTotal -= discountAmount;
     console.log("🏷️  Discount applied: -$" + discountAmount);
