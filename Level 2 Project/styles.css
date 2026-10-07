@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --cream: #FFF8ED;
+    --cream-deep: #FDF1DC;
+    --caramel: #8B5E3C;
+    --caramel-dark: #6F4E37;
+    --blush: #E8B4A0;
+    --text-color: #4A3B2C;
+    --text-soft: #7A6A57;
+    --white: #fff;
+    --radius: 14px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* header */
+header {
+    background-color: var(--cream);
+    border-bottom: 1px solid rgba(139, 94, 60, 0.12);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+}
+
+header img {
+    max-width: 80px;
+    border-radius: 50%;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--caramel);
+}
+
+.menu-button {
+    background: var(--caramel-dark);
+    color: var(--white) !important;
+    border-radius: 999px;
+    padding: 10px 20px !important;
+}
+
+.menu-button:hover {
+    background: var(--caramel);
+    color: var(--white) !important;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+main {
+    flex: 2;
+    background-color: var(--white);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(74, 59, 44, 0.08);
+}
+
+aside {
+    flex: 1;
+    background-color: var(--white);
+    height: 30vh;
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(74, 59, 44, 0.08);
+}
+
+/* sections */
+section, article, footer {
+    scroll-margin-top: 150px;
+}
+
+h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--caramel-dark);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+article {
+    margin-bottom: 20px;
+    padding: 16px;
+    border-left: 4px solid var(--blush);
+    background: var(--white);
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+article:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(74, 59, 44, 0.1);
+}
+
+article img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.treats-button {
+    color: var(--caramel-dark);
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.treats-button:hover {
+    color: var(--caramel);
+}
+
+/* sidebar */
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin: 10px 0;
+}
+
+aside a {
+    text-decoration: none;
+    color: var(--caramel-dark);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+aside a:hover {
+    color: var(--caramel);
+}
+
+/* footer */
+footer {
+    text-align: center;
+    background: var(--cream-deep);
+    color: var(--text-soft);
+    border-top: 1px solid rgba(139, 94, 60, 0.12);
+    padding: 32px 20px;
+    margin-top: 20px;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--caramel-dark);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: var(--caramel);
+}
+
+.contact-button {
+    display: inline-block;
+    margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 14px;
+    }
+
+    article {
+        padding: 15px;
+    }
+}
+
+#quote-text {
+    font-style: italic;
+    padding: 0 10px;
+}
+
+#quote-author {
+    font-weight: 600;
+    padding: 0 10px 10px;
+}
+
+#new-quote-button {
+    background: var(--caramel-dark);
+    color: var(--white);
+    border: 0;
+    border-radius: 999px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#new-quote-button:hover {
+    background: var(--caramel);
+}
+
+#site-title {
+    cursor: pointer;
+}

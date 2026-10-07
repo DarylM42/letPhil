@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --cream: #FFF8ED;
+    --cream-deep: #FDF1DC;
+    --caramel: #8B5E3C;
+    --caramel-dark: #6F4E37;
+    --blush: #E8B4A0;
+    --text-color: #4A3B2C;
+    --text-soft: #7A6A57;
+    --white: #fff;
+    --radius: 14px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* header */
+header {
+    background-color: var(--cream);
+    border-bottom: 1px solid rgba(139, 94, 60, 0.12);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--caramel-dark);
+    font-size: 1.8rem;
+}
+
+header img {
+    max-width: 80px;
+    border-radius: 50%;
+    margin: 10px 0;
+    border: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--caramel);
+}
+
+/* layout */
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+main {
+    background-color: var(--white);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(74, 59, 44, 0.08);
+}
+
+h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--caramel-dark);
+    margin-bottom: 10px;
+}
+
+section, article {
+    margin-bottom: 24px;
+    padding: 16px;
+    scroll-margin-top: 150px;
+}
+
+article {
+    border-left: 4px solid var(--blush);
+    background: var(--cream-deep);
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+article:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(74, 59, 44, 0.1);
+}
+
+article img,
+section img {
+    border-radius: 8px;
+    margin-top: 10px;
+    max-width: 100%;
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 14px;
+    }
+}

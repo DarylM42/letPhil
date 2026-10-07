@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu for Options</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+    <!-- header section -->
+        <header>
+            <h1>Baked Delights</h1>
+            <img src="../images/Logo.jpg" alt="Butter & Banana Logo" />
+            <nav>
+                <ul>
+                    <li><a href="#bread">Bread</a></li>
+                    <li><a href="#cookies">Cookies</a></li>
+                    <li><a href="#dog-treats">Dog Treats</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <main>
+                <section id="Treats">
+                    <h2>Sweet Treats</h2>
+                    <p>Look through my baked delights</p>
+                    <img src="../images/HH5j3WTa8AAFhWz.jpg"
+                    alt="Table of Contents"
+                    width="300"/>
+
+                    <form class="menu-form">
+                        <label for="category-select">Choose a treat category</label>
+                        <select id="category-select">
+                            <option value="">Select a category</option>
+                        </select>
+
+                        <label for="treat-select">Choose a treat</label>
+                        <select id="treat-select" disabled>
+                            <option value="">Select a category first</option>
+                        </select>
+
+                        <p id="treat-details" class="treat-details" aria-live="polite">
+                            Select a treat to see its details.
+                        </p>
+
+                        <button id="add-to-cart" class="cart-button" type="button" disabled>
+                            Add to Cart
+                        </button>
+                        <p id="cart-message" class="cart-message" aria-live="polite"></p>
+                    </form>
+                </section>
+                <article id="bread">
+                    <h2>Banana Bread</h2>
+                    <p>The perfect way to start your day just warm up a slice and add butter!</p>
+                    <img src="../images/HEo8H-aaIAAgPGQ.jpg"
+                    alt="Banana Bread"
+                    width="300"/>
+                </article>
+                <article id="cookies">
+                    <h2>Cookies</h2>
+                    <p>Banana Bread not your thing? I got you try some of my delicious cookies.</p>
+                    <img src="../images/HIPNap3aYAAObhg.jpg"
+                    alt="Cookies"
+                    width="300"/>
+                </article>
+                <section id="dog-treats">
+                    <h2>Dog Treats</h2>
+                    <p>Special homemade treats for your favorite four-legged friend are coming soon.</p>
+                    <p>Check back soon for a tasty selection made with love.</p>
+                </section>
+            </main>
+        </div>
+
+        <script src="app.js"></script>
+</body>
+</html>

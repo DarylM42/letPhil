@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Butter & Banana — Design Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --cream: #FFF8ED;
+        --cream-deep: #FDF1DC;
+        --caramel: #8B5E3C;
+        --caramel-dark: #6F4E37;
+        --blush: #E8B4A0;
+        --text: #4A3B2C;
+        --text-soft: #7A6A57;
+        --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+    }
+
+    h1, h2, h3, .logo {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        color: var(--caramel-dark);
+        margin: 0;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px 48px;
+        background: var(--cream);
+        border-bottom: 1px solid rgba(139, 94, 60, 0.12);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .logo {
+        font-size: 1.6rem;
+        letter-spacing: 0.5px;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 36px;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: var(--text);
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    nav a:hover { color: var(--caramel); }
+
+    .order-btn {
+        background: var(--caramel-dark);
+        color: #fff !important;
+        padding: 10px 22px;
+        border-radius: 999px;
+        letter-spacing: 1px !important;
+    }
+
+    .order-btn:hover { background: var(--caramel); }
+
+    .hero {
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        padding: 80px 48px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-text p.eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+        color: var(--text-soft);
+        margin-bottom: 12px;
+    }
+
+    .hero-text h1 {
+        font-size: 3rem;
+        line-height: 1.15;
+        margin-bottom: 18px;
+    }
+
+    .hero-text p.sub {
+        color: var(--text-soft);
+        max-width: 460px;
+        margin-bottom: 28px;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        background: var(--caramel-dark);
+        color: #fff;
+        text-decoration: none;
+        padding: 14px 30px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        box-shadow: 0 12px 24px rgba(111, 78, 55, 0.25);
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary:hover {
+        background: var(--caramel);
+        transform: translateY(-2px);
+    }
+
+    .hero-image {
+        flex: 1;
+        aspect-ratio: 4/3;
+        border-radius: 24px;
+        background: linear-gradient(135deg, var(--blush), var(--caramel));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-family: 'Fraunces', serif;
+        font-size: 1.1rem;
+        text-align: center;
+        padding: 24px;
+    }
+
+    section.menu {
+        padding: 80px 48px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-heading {
+        text-align: center;
+        margin-bottom: 48px;
+    }
+
+    .section-heading p.eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+        color: var(--text-soft);
+        margin-bottom: 10px;
+    }
+
+    .section-heading h2 { font-size: 2.2rem; }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+    }
+
+    .card {
+        background: #fff;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(74, 59, 44, 0.08);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 32px rgba(74, 59, 44, 0.14);
+    }
+
+    .card-image {
+        height: 180px;
+        background: var(--cream-deep);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-soft);
+        font-size: 0.85rem;
+    }
+
+    .card-body { padding: 20px 22px 24px; }
+
+    .card-body h3 { font-size: 1.15rem; margin-bottom: 6px; }
+
+    .card-body p.desc {
+        color: var(--text-soft);
+        font-size: 0.9rem;
+        margin-bottom: 14px;
+    }
+
+    .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .price {
+        font-weight: 600;
+        color: var(--caramel-dark);
+    }
+
+    .badge {
+        background: var(--blush);
+        color: #6b3d2e;
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-weight: 600;
+    }
+
+    footer {
+        background: var(--cream-deep);
+        padding: 56px 48px 32px;
+        text-align: center;
+        border-top: 1px solid rgba(139, 94, 60, 0.12);
+    }
+
+    footer p { color: var(--text-soft); font-size: 0.9rem; }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin: 18px 0;
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links a {
+        color: var(--caramel-dark);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    @media (max-width: 900px) {
+        .hero { flex-direction: column; }
+        .card-grid { grid-template-columns: 1fr; }
+        header { padding: 20px; }
+        .hero, section.menu { padding: 48px 20px; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Butter &amp; Banana</div>
+    <nav>
+        <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Recipes</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#" class="order-btn">Order Now</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <p class="eyebrow">Small batch &middot; Made with love</p>
+        <h1>Warm banana bread &amp; cookies, baked the slow way.</h1>
+        <p class="sub">Every loaf and cookie is baked fresh in small batches — simple ingredients, honest recipes, and a little extra butter.</p>
+        <a href="#" class="btn-primary">View the Menu</a>
+    </div>
+    <div class="hero-image">Hero food photo goes here</div>
+</section>
+
+<section class="menu">
+    <div class="section-heading">
+        <p class="eyebrow">Baked Fresh Daily</p>
+        <h2>Our Favorites</h2>
+    </div>
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-image">Photo</div>
+            <div class="card-body">
+                <h3>Classic Banana Bread</h3>
+                <p class="desc">Moist, buttery, and made with ripe bananas.</p>
+                <div class="card-footer">
+                    <span class="price">$17.99</span>
+                    <span class="badge">Bestseller</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">Photo</div>
+            <div class="card-body">
+                <h3>Midnight Chunk Cookie</h3>
+                <p class="desc">Rich chocolate chunks in a chewy cookie.</p>
+                <div class="card-footer">
+                    <span class="price">$5.99</span>
+                    <span class="badge">New</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">Photo</div>
+            <div class="card-body">
+                <h3>Lemon Blueberry Squares</h3>
+                <p class="desc">Bright citrus with bursts of blueberry.</p>
+                <div class="card-footer">
+                    <span class="price">$23.99</span>
+                    <span class="badge">Limited</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Butter &amp; Banana. Baked with care.</p>
+    <ul class="footer-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Email</a></li>
+        <li><a href="#">Phone</a></li>
+    </ul>
+</footer>
+
+</body>
+</html>

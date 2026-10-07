@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu for Options</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+    <!-- header section -->
+        <header>
+            <h1>Baked Delights</h1>
+            <a href="../index.html"><img src="../images/Logo.jpg" alt="Butter & Banana Logo" /></a>
+            <nav>
+                <ul>
+                    <li><a href="#bread">Bread</a></li>
+                    <li><a href="#cookies">Cookies</a></li>
+                    <li><a href="#order">Place an Order</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <main>
+                <section id="Treats">
+                    <h2>Sweet Treats</h2>
+                    <p>Look through my baked delights</p>
+                    <img src="../images/HH5j3WTa8AAFhWz.jpg"
+                    alt="Table of Contents"
+                    width="300"/>
+                </section>
+                <article id="bread">
+                    <h2>Banana Bread</h2>
+                    <p>The perfect way to start your day just warm up a slice and add butter!</p>
+                    <img src="../images/HEo8H-aaIAAgPGQ.jpg"
+                    alt="Banana Bread"
+                    width="300"/>
+                </article>
+                <article id="cookies">
+                    <h2>Cookies</h2>
+                    <p>Banana Bread not your thing? I got you try some of my delicious cookies.</p>
+                    <img src="../images/HIPNap3aYAAObhg.jpg"
+                    alt="Cookies"
+                    width="300"/>
+                </article>
+                <section id="order">
+                    <h2>Place an Order</h2>
+
+                    <label for="treat-select">Choose a treat:</label>
+                    <select id="treat-select">
+                        <option value="">Select a treat</option>
+                    </select>
+
+                    <label for="order-quantity">Quantity:</label>
+                    <input id="order-quantity" type="number" min="1" value="1">
+
+                    <button id="place-order-button" type="button">Place Order</button>
+                    <p id="order-message" aria-live="polite"></p>
+
+                    <h3>Order History</h3>
+                    <ul id="order-list"></ul>
+                    <button id="clear-order-history-button" type="button">Clear Order History</button>
+                </section>
+            </main>
+        </div>
+
+        <script src="app.js"></script>
+</body>
+</html>
