@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Link Library Media Embed</title>
+        <meta name="description" content="A library of media embeds using semantic HTML elements.">
+        <meta name="author" content="Daryl Murtha">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="page">
+            <header>
+                <h1>Link Library Media Embed</h1>
+                <p class="small">A library of media embeds using semantic HTML elements.</p>
+                <a class="skip" href="#content">Skip to content</a>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="#content">Main Content</a></li>
+                    <li><a href="#media">Media</a></li>
+                    <li><a href="#embed">Embed</a></li>
+                    <li><a href="#extras">Extras</a></li>
+                </ul>
+            </nav>
+            <main id="content">
+                <section id="media">
+                    <h2>Media</h2>
+                    <figure class="card">
+                        <h3>Cat Playing Piano</h3>
+                        <img src="img/cat-playing-piano.jpg" alt="A cat playing the piano" />
+                        <figcaption>A cat playing the piano.</figcaption>
+                    </figure>
+                    <h3>Relaxing Nature Sounds</h3>
+                    <audio controls>
+                        <source src="https://soundcloud.com/trending-music-us/sets/nature-sounds-1" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <h3>Dog Wavying</h3>
+                    <video controls>
+                        <source src="https://www.vecteezy.com/video/18062704-outdoor-portrait-of-cute-smiling-puppy-border-collie-jumping-waiting-for-reward-on-park-background-little-dog-with-funny-face-in-sunny-summer-day-outdoors-pet-care-and-funny-animals-life-concept" type="video/mp4">
+                        Your browser does not support the video element.
+                    </video>
+                </section>
+                <section id="embed">
+                    <h2>Embed</h2>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/og4APl4Wjl0?si=ZDtvpnLAE7CRlb-3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </section>
+                <section id="extras">
+                    <h2>Extras</h2>
+                    <ul>
+                        <li><a href="https://stackoverflow.com" target="_blank" rel="noopener noreferrer">Stack Overflow</a></li>
+                        <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://codeacademy.com" target="_blank" rel="noopener noreferrer">Code Academy</a></li>
+                        <li><a href="https://google.com" target="_blank" rel="noopener noreferrer">Google</a></li>
+                        <li><a href="https://w3schools.com" target="_blank" rel="noopener noreferrer">W3Schools</a></li>
+                    </ul>
+                </section>
+                <article class="card">
+                    <h3>Code Academy</h3>
+                    <p>Code Academy is an online platform that offers coding classes in various programming languages.</p>
+                    <a href="https://codeacademy.com" target="_blank" rel="noopener noreferrer">Visit Code Academy</a>
+                </article>
+                <article class="card">
+                    <h3>Mozilla Developer Network</h3>
+                    <p>Mozilla Developer Network (MDN) provides documentation and learning resources for web developers.</p>
+                    <a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer">Visit MDN</a>
+                </article>
+                <article class ="card">
+                    <h3>Top 50 Websites a Backend Developer Must Know</h3>
+                    <p>A curated list of essential websites for backend developers.</p>
+                    <a href="https://dev.to/itanand_/top-50-websites-a-backend-developer-must-know-2f77" target="_blank" rel="noopener noreferrer">Visit Stack Overflow</a>
+                </article>
+            </main>
+            <aside>
+                <h2>Quick Tips</h2>
+                <ul>
+                    <li>Use clear descriptive text that explains the destination or action</li>
+                    <li>Keep link text concise but meaningful on its own</li>
+                    <li>Avoid vague phrases like "click here" or "read more"</li>
+                    <li>Ensure each link's purpose is clear even when read out of context</li>
+                    <li>Indicate if a link opens a file type or performs a specific action</li>
+                </ul>
+            </aside>
+            <footer>
+                <p>Descriptive links help accessibility by giving readers and screen-reader users clear self-contained information about the link's destination or action.</p>
+            </footer>   
+        </div>
+    </body>
+</html>

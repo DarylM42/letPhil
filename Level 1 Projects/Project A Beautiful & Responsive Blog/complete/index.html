@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Personal Blog</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <!-- header section -->
+        <header>
+            <h1>My Blog</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <main>
+                <section id="about">
+                    <h2>About Me</h2>
+                    <p>Welcome to my blog! Here, I share insights and tips on web development, focusing on semantic HTML and best practices.</p>
+                </section>
+                <!-- blog articles -->
+                <article>
+                    <h2>Understanding Semantic HTML</h2>
+                    <p>Semantic HTML is a way to write HTML that describes meaning of the content...</p>
+                    <img src="./images//Thumbs up.jpg" 
+                    alt="blog-photo-1" 
+                    width="500" 
+                />
+                </article>
+                <article>
+                    <h2>How to add Media in HTML</h2>
+                    <p>
+                        Adding images, videos and audio files to a webpage enhances the user experience...
+                    </p>
+                    <audio controls>
+                        <source src="./02 - I Will Not Bow.mp3"" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </article>
+                <!-- embedding youtube video -->
+                 <section>
+                    <h2>Watch my latest Videos</h2>
+                    <iframe width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/-w-qi_E64V8?si=CNk_gD6RZIpt_LHY" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen
+                    ></iframe>
+                 </section>                
+            </main>
+            <!-- sidebar section -->
+            <aside>
+                    <h3>more links</h3>
+                    <ul>
+                        <li><a href="#">My Portfolio</a></li>
+                        <li><a href="#">Follow me on other platforms</a></li>
+                        <li><a href="#">Subscribe to youtube</a></li>
+                    </ul>
+            </aside>
+        </div>
+        <!-- footer section -->
+        <footer id="contact">
+            <p>contact me at: <a href="mailto:example@example.com">example@example.com</a></p>
+            <p>call me at: <a href="tel:+1234567890">+1 234 567 890</a></p>
+            <p>&copy; 2026 My Blog. All rights reserved.</p>
+        </footer>   
+    </body>
+</html>
+
+<!--
+[x] a header with a navigation bar
+[x] a main content area with blog articles
+[x] a sidebar using asides
+[x] a footer with contact details
+[x] anchor links for navigation
+[x] images, audio and video
+[x] a youtube embed video
+-->

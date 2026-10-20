@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recipe Planner</title>
+        <meta name="description" content="Plan your meals and organize your shopping list with ease.">
+        <meta name="keywords" content="recipe, meal planning, shopping list, ingredients">
+        <meta name="author" content="Daryl Murtha">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="page-header">
+            <header>
+                <h1>Recipe Planner</h1>
+                <p>Plan your meals and <span class="emphasize">organize your shopping list</span>  with ease.</p>   
+            </header>
+            <main>
+                <section class="card">
+                    <h2>Today's Plan</h2>
+                    <ul>
+                        <li>Pancakes with syrup</li>
+                        <li>Grilled chicken salad</li>
+                        <li>Spaghetti Bolognese</li>
+                    </ul>
+                    <ol>
+                        <li>Milk</li>
+                        <li>Eggs</li>
+                        <li>Flour</li>
+                        <li>Chicken breast</li>
+                        <li>Lettuce</li>
+                        <li>Tomatoes</li>
+                        <li>Ground beef</li>
+                        <li>Spaghetti noodles</li>
+                    </ol>
+                </section>
+                <section class="card">
+                    <h2>Ingredients Table</h2>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Ingredient</th>
+                                <th>Amount</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Milk</td>
+                                <td>1 cup</td>
+                                <td>Use whole milk for best results</td>
+                            </tr>
+                            <tr>
+                                <td>Eggs</td>
+                                <td>2</td>
+                                <td>Preferably free-range</td>
+                            </tr>
+                            <tr>
+                                <td>Flour</td>
+                                <td>2 cups</td>
+                                <td>All-purpose flour works best</td>
+                            </tr>
+                            <tr>
+                                <td>Chicken breast</td>
+                                <td>200g</td>
+                                <td>Boneless and skinless</td>
+                            </tr>
+                            <tr>
+                                <td>Lettuce</td>
+                                <td>1 head</td>
+                                <td>Fresh and crisp</td>
+                            </tr>
+                            <tr>
+                                <td>Tomatoes</td>
+                                <td>2</td>
+                                <td>Ripe and juicy</td>
+                            </tr>
+                            <tr>
+                                <td>Ground beef</td>
+                                <td>300g</td>
+                                <td>Lean ground beef works best</td>
+                            </tr>
+                            <tr>
+                                <td>Spaghetti noodles</td>
+                                <td>200g</td>
+                                <td>Use durum wheat for best texture</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="card">
+                    <h2>Shopping Note</h2>
+                    <form>
+                        <label for="Item">Item:</label>
+                        <input type="text" name="item" placeholder="Example: Milk" required>
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" name="quantity" id="quantity" min="1" max="10" required>
+                        <label for="category">Category:</label>
+                        <select name="category" id="category">
+                            <option value="">Please Choose</option>
+                            <option value="Dairy">Dairy</option>
+                            <option value="Produce">Produce</option>
+                            <option value="Meat">Meat</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <label for="extranotes">Extra Notes:</label>
+                        <input type="text" name="extranotes" id="extranotes" placeholder="Add Extra Notes Here">
+                        <button type="submit">Add to List</button>
+                    </form>
+            </main>
+            <footer>
+                <p>&copy; 2026 Recipe Planner. All rights reserved.</p>
+            </footer>
+        </div>      
+    </body>
+</html>

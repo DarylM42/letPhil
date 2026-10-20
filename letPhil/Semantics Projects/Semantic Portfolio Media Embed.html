@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Semantic Portfolio Media Embed</title>
+        <meta name="description" content="A portfolio showcasing media embeds using semantic HTML elements.">
+        <meta name="author" content="Daryl Murtha">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="page">
+            <header>
+                <h1>Semantic Portfolio Media Embed</h1>
+                <p class="small">A portfolio showcasing media embeds using semantic HTML elements.</p>
+                <a class="skip" href="#content">Skip to content</a>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="#content">Main Content</a></li>
+                    <li><a href="#media">Media</a></li>
+                    <li><a href="#embed">Embed</a></li>
+                    <li><a href="#extras">Extras</a></li>
+                </ul>
+            </nav>
+            <main id="content">
+                <section id="media">
+                    <h2>Media</h2>
+                    <figure class="card">
+                        <h3>Doggy Suprised</h3>
+                        <img src="img/dog-surprised.jpg" alt="A dog looking surprised" />
+                        <figcaption>A dog looking surprised.</figcaption>
+                    </figure>>
+                    <h3>Electronic Dubstep</h3>
+                    <audio controls>
+                        <source src="https://soundcloud.com/trending-music-us/sets/electronic-1" type="audio/mpeg">
+                    </audio>
+                    <h3>Dog Wavying</h3>
+                    <video controls width="400">
+                        <source src="https://www.vecteezy.com/video/18062704-outdoor-portrait-of-cute-smiling-puppy-border-collie-jumping-waiting-for-reward-on-park-background-little-dog-with-funny-face-in-sunny-summer-day-outdoors-pet-care-and-funny-animals-life-concept" type="video/mp4">
+                    </video>
+                </section>
+                <section id="embed">
+                    <h2>Embed</h2>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/-SY-aeSplco?si=cg2x7FlICloFQiq4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </section>
+                <section id="extras">
+                    <h2>Extras</h2>
+                    <p>Here are some additional media embeds for you to explore:</p>
+                    <article class="card">
+                        <h3>Cat Playing Piano</h3>
+                        <img src="img/cat-playing-piano.jpg" alt="A cat playing the piano" />
+                        <figcaption>A cat playing the piano.</figcaption>
+                        <a href="#link-1">Project 1</a>
+                    </article>
+                    <article class="card">
+                        <h3>Relaxing Nature Sounds</h3>
+                        <audio controls>
+                            <source src="https://soundcloud.com/trending-music-us/sets/nature-sounds-1" type="audio/mpeg">
+                        </audio>
+                        <a href="#link-2">Project 2</a>
+                    </article>
+                </section>
+            </main>
+            <aside>
+                <h2>Quick Tips</h2>
+                <ul>
+                    <li>Use meaningful structural tags like header, nav and footer</li>
+                    <li>Arrange your heading tags in proper sequential order</li>
+                    <li>Separate text content from your visual styles by using CSS</li>
+                </ul>
+            </aside>
+            <footer>
+                <p>&copy; 2024 Daryl Murtha. All rights reserved.</p>
+                <a href="https://google.com" target="_blank" rel="noopener noreferrer">Visit Google</a>
+            </footer>
+        </div>
+    </body>
+</html>
