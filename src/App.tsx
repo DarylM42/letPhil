@@ -1,15 +1,19 @@
 // This is your storefront. Each ticket adds a piece to it.
 // Start with tickets/day-1/1.1-product-type-and-card.md
 import { products } from "./data/products";
-import ProductCard from "./components/ProductCard";
+import Navbar from "./components/Navbar";
+import ProductGrid from "./components/ProductGrid";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div>
       <main className="min-h-screen bg-gray-50 p-8">
-        <h1 className="text-3xl font-bold">SummitGear Market</h1>
-        <p className="text-gray-600">Open the tickets folder to get started.</p>
-        <ProductCard product={products[0]} />
+        {/* <h1 className="text-3xl font-bold">SummitGear Market</h1>
+        <p className="text-gray-600">Open the tickets folder to get started.</p> */}
+        <Navbar companyName="SummitGear Market" />
+        <ProductGrid products={products} />
+        <Footer companyName="SummitGear Market" />
       </main> 
     </div>
   );
