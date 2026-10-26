@@ -10,6 +10,8 @@ function App() {
   const dealsUnder20 = products.filter(p => p.price < 20);
   const topRated = products.filter(p => p.stock > 0 && p.rating >= 4.5);
   const furniture = products.filter(p => p.category === "furniture");
+  const luxury = products.filter(p => p.price > 5000);
+
   return (
     <div>
       <main className="min-h-screen bg-gray-50 p-8">
@@ -20,6 +22,7 @@ function App() {
         <ProductSection title="Deals under $20" products={dealsUnder20} />
         <ProductSection title="Top rated" products={topRated} />
         <ProductSection title="Furniture" products={furniture} />
+        <ProductSection title="Luxury (over $5,000)" products={luxury} />
         <Footer companyName="SummitGear Market" />
       </main> 
     </div>
