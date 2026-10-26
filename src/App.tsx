@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 // import ProductGrid from "./components/ProductGrid";
 import Footer from "./components/Footer";
 import ProductSection from "./components/ProductSection";
+import StatsBar from "./components/StatsBar";
 
 function App() {
   const dealsUnder20 = products.filter(p => p.price < 20);
@@ -18,6 +19,7 @@ function App() {
         {/* <h1 className="text-3xl font-bold">SummitGear Market</h1>
         <p className="text-gray-600">Open the tickets folder to get started.</p> */}
         <Navbar companyName="SummitGear Market" />
+        <StatsBar products={products} />
         {/* <ProductGrid products={products} /> */}
         <ProductSection title="Deals under $20" products={dealsUnder20} />
         <ProductSection title="Top rated" products={topRated} />
