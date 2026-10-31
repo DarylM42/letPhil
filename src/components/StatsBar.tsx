@@ -11,22 +11,22 @@ function StatsBar({ products }: { products: Product[] }) {
 
     return (
         <div className="grid grid-cols-4 gap-4 w-full mb-8">
-            <div className="border p-4 rounded">
-                <p className="text-gray-500">UNITS IN STOCK</p>
+            <div className="border p-4 rounded bg:white dark:bg-slate-800 dark:border-slate-700">
+                <p className="text-gray-500 dark:text-gray-400">UNITS IN STOCK</p>
                 <p className="text-2xl font-bold">{totalStock.toLocaleString()}</p>
             </div>
-            <div className="border p-4 rounded">
-                <p className="text-gray-500">INVENTORY VALUE</p>
+            <div className="border p-4 rounded bg:white dark:bg-slate-800 dark:border-slate-700">
+                <p className="text-gray-500 dark:text-gray-400">INVENTORY VALUE</p>
                 <p className="text-2xl font-bold">${totalValue.toLocaleString('en-US', {
                     minimumFractionDigits: 2, maximumFractionDigits: 2
                 })}</p>
             </div>
-            <div className="border p-4 rounded">
-                <p className="text-gray-500">AVERAGE RATING</p>
+            <div className="border p-4 rounded bg:white dark:bg-slate-800 dark:border-slate-700">
+                <p className="text-gray-500 dark:text-gray-400">AVERAGE RATING</p>
                 <p className="text-2xl font-bold">★ {avgRating}</p>
             </div>
-            <div className="border p-4 rounded">
-                <p className="text-gray-500">LOW STOCK</p>
+            <div className="border p-4 rounded bg:white dark:bg-slate-800 dark:border-slate-700">
+                <p className="text-gray-500 dark:text-gray-400">LOW STOCK</p>
                 <p className="text-2xl font-bold text-orange-500">{lowStockCount} Products</p>
             </div>
         </div>

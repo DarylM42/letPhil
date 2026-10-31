@@ -17,11 +17,16 @@ function App() {
   const filteredProducts = products.filter(p =>
     p.title.toLowerCase().includes(searchText.toLowerCase())
   );
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   return (
-    <div>
-      <main className="min-h-screen bg-gray-50 p-8">
-        <Navbar companyName="SummitGear Market" />
+    <div className={theme === "dark" ? "dark" : ""}>
+      <main className="min-h-screen bg-gray-50 dark:bg-slate-950 text-black dark:text-white p-8">
+        <Navbar 
+          companyName="SummitGear Market"
+          theme={theme}
+          onThemeChange={setTheme}
+        />
         <StatsBar products={products} />
         <SearchBar value={searchText} onChange={(e) => setSearchText(e.target.value)} />
         

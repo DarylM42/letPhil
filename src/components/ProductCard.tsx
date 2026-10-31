@@ -2,8 +2,10 @@ import type { Product } from "../types/product";
 
 function ProductCard({ product }: { product: Product }) {
     return (
-        <div className="border rounded-lg p-4 shadow-md max-w-xs relative">
-            <img src={product.thumbnail} alt="Product image" />
+        <div className="border rounded-lg p-4 shadow-md max-w-xs relative bg-white dark:bg-slate-800">
+            <div className="bg-gray-100 dark:bg-slate-700 rounded p-2 mb-2">
+                <img src={product.thumbnail} alt="Product image" />
+            </div>
             {product.brand && <div>{product.brand}</div>}
             <div className="font-bold text-black-600">{product.title}</div>
             <div className="flex justify-between">
