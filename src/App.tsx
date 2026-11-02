@@ -10,6 +10,8 @@ import { groupByCategory } from "./utils/groupByCategory";
 import { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import EmptyState from "./components/EmptyState";
+import type { CartItem } from "./types/cart";
+import type { Product } from "./types/product";
 
 function App() {
   const grouped = groupByCategory(products);
@@ -26,6 +28,22 @@ function App() {
       setFavorites([...favorites, productId]);
     }
   };
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const addToCart = (product: Product) => {
+    const existingItem = cart.find(item => item.product.id === product.id);
+
+    if (existingItem) {
+      if (existingItem.quantity < product.stock) {
+        setCart(cart.map(item =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ));
+      }
+    } else {
+      setCart([...cart, { product, quantity: 1 }]);
+    }
+  };
 
   return (
     <div className={theme === "dark" ? "dark" : ""}>
@@ -35,35 +53,23 @@ function App() {
           theme={theme}
           onThemeChange={setTheme}
           favorites={favorites}
+          cart={cart}
         />
-        <StatsBar products={products} />
         <SearchBar value={searchText} onChange={(e) => setSearchText(e.target.value)} />
+        {/* <StatsBar products={products} /> */}
         
-        {searchText ? (
-          filteredProducts.length === 0 ? (
-            <EmptyState message={`Nothing matches "${searchText}". Try a different search.`} />
-          ) : (
-            <>
-              <p>Showing...</p>
-              <ProductGrid
-                products={filteredProducts}
-                favorites={favorites}
-                onToggleFavorite={toggleFavorite}
-        />
-            </>
-          )
+        {searchText && filteredProducts.length === 0 ? (
+          <EmptyState message={`Nothing matches "${searchText}". Try a different search.`} />
         ) : (
           <>
-            {Object.entries(grouped).map(([category, categoryProducts]) => (
-              <ProductSection 
-                key={category} 
-                category={category} 
-                count={categoryProducts.length} 
-                products={categoryProducts}
-                favorites={favorites}
-                onToggleFavorite={toggleFavorite}
-              />
-            ))}
+            <h2 className="font-bold text-lg p-2">All products</h2>
+            <ProductGrid
+              products={searchText ? filteredProducts : products}
+              favorites={favorites}
+              onToggleFavorite={toggleFavorite}
+              cart={cart}
+              onAddToCart={addToCart}
+            />
           </>
         )}
         <Footer companyName="SummitGear Market" />

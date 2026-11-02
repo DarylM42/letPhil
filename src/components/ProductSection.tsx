@@ -1,4 +1,5 @@
 import type { Product } from "../types/product";
+import type { CartItem } from "../types/cart";
 import ProductGrid from "./ProductGrid";
 
 function ProductSection({ 
@@ -6,13 +7,17 @@ function ProductSection({
     count, 
     products,
     favorites,
-    onToggleFavorite
+    onToggleFavorite,
+    cart,
+    onAddToCart
 }: { 
     category: string,
     count: number; 
     products: Product[]; 
     favorites: number[];
     onToggleFavorite: (id: number) => void;
+    cart: CartItem[];
+    onAddToCart: (product: Product) => void;
 }) {
     return (
         <div>
@@ -24,6 +29,8 @@ function ProductSection({
                 products={products} 
                 favorites={favorites}
                 onToggleFavorite={onToggleFavorite}
+                cart={cart}
+                onAddToCart={onAddToCart}
             />
         </div>
     );
