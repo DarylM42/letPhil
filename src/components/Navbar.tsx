@@ -5,13 +5,17 @@ function Navbar({
     theme,
     onThemeChange,
     favorites,
-    cart
+    cart,
+    isCartOpen,
+    onOpenCart
  }: { 
     companyName: string;
     theme: "light" | "dark";
     onThemeChange: (theme: "light" | "dark") => void;
     favorites: number[];
     cart: CartItem[];
+    isCartOpen: boolean;
+    onOpenCart: () => void;
  }) {
     const navLinks = [
         { label: "Shop", href: "/" },
@@ -29,7 +33,13 @@ function Navbar({
                 {navLinks.map(link => (
                     <a 
                         key={link.href} 
-                        href={link.href}
+                        href={link.href === "Cart" ? "#" : link.href}
+                        onClick={(e) => {
+                            if (link.label === "Cart") {
+                                e.preventDefault();
+                                onOpenCart();
+                            }
+                        }}
                         className={link.label === "Shop" ? "font-bold text-green-800 bg-green-100 px-3 py-1 rounded" : ""}
                     >
                         {link.label === "Cart" ? (

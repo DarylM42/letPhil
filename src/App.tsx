@@ -5,13 +5,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProductSection from "./components/ProductSection";
 import ProductGrid from "./components/ProductGrid";
-import StatsBar from "./components/StatsBar";
+// import StatsBar from "./components/StatsBar";
 import { groupByCategory } from "./utils/groupByCategory";
 import { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import EmptyState from "./components/EmptyState";
 import type { CartItem } from "./types/cart";
 import type { Product } from "./types/product";
+import CartPanel from "./components/CartPanel";
 
 function App() {
   const grouped = groupByCategory(products);
@@ -44,6 +45,26 @@ function App() {
       setCart([...cart, { product, quantity: 1 }]);
     }
   };
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const removeFromCart = (productId: number) => {
+    setCart(cart.filter(item => item.product.id !== productId));
+  };
+
+  const updateQuantity = (productId: number, quantity: number) => {
+    if (quantity < 1) {
+      removeFromCart(productId);
+    } else {
+      setCart(cart.map(item =>
+        item.product.id === productId
+        ? { ...item, quantity }
+        : item
+      ));
+    }
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false);
+  };
 
   return (
     <div className={theme === "dark" ? "dark" : ""}>
@@ -54,6 +75,8 @@ function App() {
           onThemeChange={setTheme}
           favorites={favorites}
           cart={cart}
+          isCartOpen={isCartOpen}
+          onOpenCart={() => setIsCartOpen(true)}
         />
         <SearchBar value={searchText} onChange={(e) => setSearchText(e.target.value)} />
         {/* <StatsBar products={products} /> */}
@@ -73,6 +96,13 @@ function App() {
           </>
         )}
         <Footer companyName="SummitGear Market" />
+        <CartPanel
+          cart={cart}
+          isOpen={isCartOpen}
+          onClose={closeCart}
+          onRemove={removeFromCart}
+          onUpdateQuantity={updateQuantity}
+        />
       </main> 
     </div>
   );
