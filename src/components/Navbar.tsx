@@ -1,11 +1,13 @@
 function Navbar({ 
     companyName,
     theme,
-    onThemeChange
+    onThemeChange,
+    favorites
  }: { 
     companyName: string;
     theme: "light" | "dark";
     onThemeChange: (theme: "light" | "dark") => void;
+    favorites: number[];
  }) {
     const navLinks = [
         { label: "Shop", href: "/" },
@@ -22,7 +24,7 @@ function Navbar({
             <div className="flex gap-6 text-gray-500">
                 {navLinks.map(link => (
                     <a key={link.href} href={link.href}>
-                        {link.label}
+                        {link.label}{link.label === "Favorites" ? ` (${favorites.length})` : ""}
                     </a>
                 ))}
                 <button

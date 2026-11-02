@@ -18,6 +18,14 @@ function App() {
     p.title.toLowerCase().includes(searchText.toLowerCase())
   );
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [favorites, setFavorites] = useState<number[]>([]);
+  const toggleFavorite = (productId: number) => {
+    if (favorites.includes(productId)) {
+      setFavorites(favorites.filter((id) => id !== productId));
+    } else {
+      setFavorites([...favorites, productId]);
+    }
+  };
 
   return (
     <div className={theme === "dark" ? "dark" : ""}>
@@ -26,6 +34,7 @@ function App() {
           companyName="SummitGear Market"
           theme={theme}
           onThemeChange={setTheme}
+          favorites={favorites}
         />
         <StatsBar products={products} />
         <SearchBar value={searchText} onChange={(e) => setSearchText(e.target.value)} />
@@ -35,16 +44,25 @@ function App() {
             <EmptyState message={`Nothing matches "${searchText}". Try a different search.`} />
           ) : (
             <>
-              <p className="text-gray-600 mb-4">
-                Showing {filteredProducts.length} of {products.length} products
-              </p>
-              <ProductGrid products={filteredProducts} />
+              <p>Showing...</p>
+              <ProductGrid
+                products={filteredProducts}
+                favorites={favorites}
+                onToggleFavorite={toggleFavorite}
+        />
             </>
           )
         ) : (
           <>
             {Object.entries(grouped).map(([category, categoryProducts]) => (
-              <ProductSection key={category} category={category} count={categoryProducts.length} products={categoryProducts} />
+              <ProductSection 
+                key={category} 
+                category={category} 
+                count={categoryProducts.length} 
+                products={categoryProducts}
+                favorites={favorites}
+                onToggleFavorite={toggleFavorite}
+              />
             ))}
           </>
         )}
