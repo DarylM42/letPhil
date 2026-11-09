@@ -1,20 +1,28 @@
-import { products } from "./data/products";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProductGrid from "./components/ProductGrid";
 import { groupByCategory } from "./utils/groupByCategory";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
 import EmptyState from "./components/EmptyState";
 import type { CartItem } from "./types/cart";
 import type { Product } from "./types/product";
+import type { ProductsResponse } from "./types/product";
 import CartPanel from "./components/CartPanel";
 import { useAppContext } from "./context/AppContext";
 
 function App() {
   const { theme, setTheme, cart, setCart, favorites, setFavorites, isCartOpen, setIsCartOpen } = useAppContext();
-  const grouped = groupByCategory(products);
+  const [products, setProducts] = useState<Product[]>([]);
   const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/products")
+      .then(res => res.json())
+      .then((data: ProductsResponse) => setProducts(data.products));
+  }, []);
+
+  const grouped = groupByCategory(products);
   const filteredProducts = products.filter(p =>
     p.title.toLowerCase().includes(searchText.toLowerCase())
   );
