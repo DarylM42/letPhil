@@ -5,6 +5,7 @@ import { groupByCategory } from "./utils/groupByCategory";
 import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
 import EmptyState from "./components/EmptyState";
+import SkeletonCard from "./components/SkeletonCard";
 import type { CartItem } from "./types/cart";
 import type { Product } from "./types/product";
 import type { ProductsResponse } from "./types/product";
@@ -14,13 +15,33 @@ import { useAppContext } from "./context/AppContext";
 function App() {
   const { theme, setTheme, cart, setCart, favorites, setFavorites, isCartOpen, setIsCartOpen } = useAppContext();
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
   const [searchText, setSearchText] = useState("");
 
+  const fetchProducts = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("https://dummyjson.com/products");
+
+      if (!res.ok) {
+        throw new Error("We couldn't load Products");
+      }
+
+      const data: ProductsResponse = await res.json();
+      setProducts(data.products);
+    } catch (err) {
+      setError("Unable to load products. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+    
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then(res => res.json())
-      .then((data: ProductsResponse) => setProducts(data.products));
-  }, []);
+  fetchProducts();
+}, []);
 
   const grouped = groupByCategory(products);
   const filteredProducts = products.filter(p =>
@@ -85,7 +106,25 @@ function App() {
         />
         <SearchBar value={searchText} onChange={(e) => setSearchText(e.target.value)} />
         
-        {searchText && filteredProducts.length === 0 ? (
+        {loading ? (
+          <div>
+            <h2 className="font-bold text-lg p-2">Loading products...</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {Array.from({ length: 8 }).map((_, index) => (
+                <SkeletonCard key={index} />
+              ))}
+            </div>
+          </div>
+        ) : error ? (
+          <div className="bg-red-50 border border-red-200 rounded p-8 text-center">
+            <div className="text-4xl mb-4">⚠️</div>
+            <h3 className="text-lg font-bold text-red-600 mb-2">We couldn't load products</h3>
+            <p className="text-red-600 mb-6">Something went wrong while talking to the server. Check your connection and try again.</p>
+            <button onClick={fetchProducts} className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">
+              Try again
+            </button>
+          </div>
+        ) : searchText && filteredProducts.length === 0 ? (
           <EmptyState message={`Nothing matches "${searchText}". Try a different search.`} />
         ) : (
           <>
