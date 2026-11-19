@@ -1,6 +1,8 @@
 import Navbar from "./components/Navbar";
+import PromoBanner from "./components/PromoBanner";
 import Footer from "./components/Footer";
 import ProductGrid from "./components/ProductGrid";
+import Stats from "./components/Stats";
 import { groupByCategory } from "./utils/groupByCategory";
 import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
@@ -42,6 +44,14 @@ function App() {
   useEffect(() => {
   fetchProducts();
 }, []);
+
+  useEffect(() => {
+    if (cart.length === 0) {
+      document.title = "SummitGear Market";
+    } else {
+      document.title = `SummitGear Market (${cart.length})`;
+    }
+}, [cart]);
 
   const grouped = groupByCategory(products);
   const filteredProducts = products.filter(p =>
@@ -94,6 +104,7 @@ function App() {
 
   return (
     <div className={theme === "dark" ? "dark" : ""}>
+      <PromoBanner />
       <main className="flex flex-col justify-between min-h-screen bg-gray-50 dark:bg-slate-950 text-black dark:text-white p-8">
         <Navbar 
           companyName="SummitGear Market"
@@ -128,14 +139,47 @@ function App() {
           <EmptyState message={`Nothing matches "${searchText}". Try a different search.`} />
         ) : (
           <>
-            <h2 className="font-bold text-lg p-2">All products</h2>
-            <ProductGrid
-              products={searchText ? filteredProducts : products}
-              favorites={favorites}
-              onToggleFavorite={toggleFavorite}
-              cart={cart}
-              onAddToCart={addToCart}
-            />
+            <Stats products={searchText ? filteredProducts : products} />
+
+            {/* Deals under $20 */}
+            {(() => {
+              const dealsUnder20 = (searchText ? filteredProducts : products).filter(p => p.price < 20);
+              if (dealsUnder20.length > 0) {
+                return (
+                  <div className="mb-8">
+                    <h2 className="font-bold text-lg p-2">Deals under $20</h2>
+                    <ProductGrid
+                      products={dealsUnder20}
+                      favorites={favorites}
+                      onToggleFavorite={toggleFavorite}
+                      cart={cart}
+                      onAddToCart={addToCart}
+                    />
+                  </div>
+                );
+              }
+            })()}
+
+            {Object.entries(grouped).map(([category, categoryProducts]) => {
+              const categoryFiltered = searchText
+                ? categoryProducts.filter(p => p.title.toLowerCase().includes(searchText.toLowerCase()))
+                : categoryProducts;
+
+              if (categoryFiltered.length === 0) return null;
+
+              return (
+                <div key={category} className="mb-8">
+                  <h2 className="font-bold text-lg p-2 capitalize">{category}</h2>
+                  <ProductGrid
+                    products={categoryFiltered}
+                    favorites={favorites}
+                    onToggleFavorite={toggleFavorite}
+                    cart={cart}
+                    onAddToCart={addToCart}
+                  />
+                </div>
+              );
+            })}
           </>
         )}
         <Footer companyName="SummitGear Market" />
