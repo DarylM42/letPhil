@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import type { Product } from "../types/product";
 
 function ProductCard({ 
@@ -15,9 +16,11 @@ function ProductCard({
 }) {
     return (
         <div className="border rounded-lg p-4 shadow-md max-w-xs relative bg-white dark:bg-slate-800">
-            <div className="bg-gray-200 dark:bg-slate-700 rounded p-2 mb-2">
-                <img src={product.thumbnail} alt="Product image" />
-            </div>
+            <Link to={`/products/${product.id}`}>
+                <div className="bg-gray-200 dark:bg-slate-700 rounded p-2 mb-2">
+                    <img src={product.thumbnail} alt="Product image" />
+                </div>
+            </Link>
             <button
                 onClick={onToggleFavorite}
                 className={`absolute top-6 right-6 text-2xl rounded-full w-8 h-8 flex items-center justify-center border-none cursor-pointer ${
@@ -36,7 +39,9 @@ function ProductCard({
                 Add to cart
             </button>
             {product.brand && <div>{product.brand}</div>}
-            <div className="font-bold text-black-600">{product.title}</div>
+            <Link to={`/products/${product.id}`} className="font-bold hover:underline">
+                {product.title}
+            </Link>
             <div className="flex justify-between">
                 <div className="font-bold text-green-600">${product.price.toFixed(2)}</div>
                 <div className="text-gray-500">★ {product.rating}</div>

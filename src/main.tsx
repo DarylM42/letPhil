@@ -8,6 +8,7 @@ import FavoritesPage from "./pages/FavoritesPage";
 import CartPage from "./pages/CartPage";
 import SuggestProductForm from "./components/SuggestProductForm";
 import { AppProvider } from "./context/AppContext";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 const root = document.getElementById("root");
 
@@ -20,6 +21,7 @@ ReactDOM.createRoot(root!).render(
             <Route index element={<HomePage />} />
             <Route path="favorites" element={<FavoritesPage />} />
             <Route path="cart" element={<CartPage />} />
+            <Route path="products/:id" element={<ProductDetailPage />} />
           </Route>
           <Route path="/suggest" element={<SuggestProductForm />} />
         </Routes>
