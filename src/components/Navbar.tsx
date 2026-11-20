@@ -25,22 +25,18 @@ function Navbar({
         <div className="font-bold text-green-800">{companyName}</div>
       </div>  
       <div className="flex gap-6 text-gray-500 items-center">
-        <NavLink 
-          to="/" 
+        <NavLink
+          to="/"
           className={({ isActive }) => isActive ? "font-bold text-green-800 bg-green-100 px-3 py-1 rounded" : ""}
         >
           Shop
-        </NavLink>
-
-        <NavLink to="/suggest" className={({ isActive }) => isActive ? "font-bold text-green-800 bg-green-100 px-3 py-1 rounded" : ""}>
-          Suggest
         </NavLink>
 
         <NavLink to="/favorites" className={({ isActive }) => isActive ? "font-bold text-green-800 bg-green-100 px-3 py-1 rounded" : ""}>
           Favorites <span className="bg-green-800 text-white rounded-full px-2 py-0.5 ml-1 text-sm">{favorites.length}</span>
         </NavLink>
 
-        <NavLink to="/cart" onClick={(e) => { e.preventDefault(); onOpenCart(); }} className={({ isActive }) => isActive ? "font-bold text-green-800 bg-green-100 px-3 py-1 rounded" : ""}>
+        <NavLink to="/cart" className={({ isActive }) => isActive ? "font-bold text-green-800 bg-green-100 px-3 py-1 rounded" : ""}>
           Cart <span className="bg-green-800 text-white rounded-full px-2 py-0.5 ml-1 text-sm">{cart.reduce((sum, item) => sum + item.quantity, 0)}</span>
         </NavLink>
 

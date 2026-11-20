@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
 import type { CartItem } from "../types/cart";
+import type { Product, ProductsResponse } from "../types/product";
 
 interface AppContextType {
   theme: "light" | "dark";
@@ -10,6 +11,9 @@ interface AppContextType {
   setFavorites: (favorites: number[]) => void;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
+  products: Product[];
+  loading: boolean;
+  error: string;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -19,9 +23,50 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [favorites, setFavorites] = useState<number[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      setError("");
+
+      try {
+        const res = await fetch("https://dummyjson.com/products");
+
+        if (!res.ok) {
+          throw new Error("Failed to load products");
+        }
+
+        const data: ProductsResponse = await res.json();
+        setProducts(data.products);
+      } catch (err) {
+        setError("Unable to load products. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
-    <AppContext.Provider value={{ theme, setTheme, cart, setCart, favorites, setFavorites, isCartOpen, setIsCartOpen }}>
+    <AppContext.Provider
+      value={{
+        theme,
+        setTheme,
+        cart,
+        setCart,
+        favorites,
+        setFavorites,
+        isCartOpen,
+        setIsCartOpen,
+        products,
+        loading,
+        error,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

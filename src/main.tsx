@@ -2,7 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./index.css";
-import App from "./App";
+import Layout from "./pages/Layout";
+import HomePage from "./pages/HomePage";
+import FavoritesPage from "./pages/FavoritesPage";
+import CartPage from "./pages/CartPage";
 import SuggestProductForm from "./components/SuggestProductForm";
 import { AppProvider } from "./context/AppContext";
 
@@ -13,7 +16,11 @@ ReactDOM.createRoot(root!).render(
     <AppProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="favorites" element={<FavoritesPage />} />
+            <Route path="cart" element={<CartPage />} />
+          </Route>
           <Route path="/suggest" element={<SuggestProductForm />} />
         </Routes>
       </BrowserRouter>
