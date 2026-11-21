@@ -1,13 +1,8 @@
 import { useState } from "react";
 import { products } from "../data/products";
 import { groupByCategory } from "../utils/groupByCategory";
-import { useAppContext } from "../context/AppContext";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 
 function SuggestProductForm() {
-    const { theme, setTheme, cart, favorites, isCartOpen, setIsCartOpen } = useAppContext();
-
     const [form, setForm] = useState({
         name: "",
         category: "",
@@ -41,18 +36,6 @@ function SuggestProductForm() {
     };
 
     return (
-        <div className={theme === "dark" ? "dark" : ""}>
-            <main className="flex flex-col justify-between min-h-screen bg-gray-50 dark:bg-slate-950 text-black dark:text-white p-8">
-                <Navbar
-                    companyName="SummitGear Market"
-                    theme={theme}
-                    onThemeChange={setTheme}
-                    favorites={favorites}
-                    cart={cart}
-                    isCartOpen={isCartOpen}
-                    onOpenCart={() => setIsCartOpen(true)}
-                />
-
                 <div className="max-w-3xl mx-auto mb-8">
                     <div className="p-8 bg-white dark:bg-slate-800 rounded border border-gray-300 dark:border-slate-700">
                         <h2 className="font-bold text-lg mb-2">Suggest a product</h2>
@@ -136,10 +119,6 @@ function SuggestProductForm() {
                         </div>
                     )}
                 </div>
-
-                <Footer companyName="SummitGear Market" />
-            </main>
-        </div>
     );
 }
 
