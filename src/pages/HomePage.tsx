@@ -7,12 +7,8 @@ import SkeletonCard from "../components/SkeletonCard";
 import Stats from "../components/Stats";
 import { groupByCategory } from "../utils/groupByCategory";
 import { useAppContext } from "../context/AppContext";
-import type { CartItem } from "../types/cart";
-import type { Product } from "../types/product";
 
 type LayoutContext = {
-  cart: CartItem[];
-  setCart: (cart: CartItem[]) => void;
   favorites: number[];
   setFavorites: (favorites: number[]) => void;
   isCartOpen: boolean;
@@ -20,7 +16,7 @@ type LayoutContext = {
 };
 
 function HomePage() {
-  const { cart, setCart, favorites, setFavorites } = useOutletContext<LayoutContext>();
+  const { favorites, setFavorites } = useOutletContext<LayoutContext>();
   const { products, loading, error } = useAppContext();
   const [searchText, setSearchText] = useState("");
 
@@ -39,22 +35,6 @@ function HomePage() {
       setFavorites(favorites.filter((id) => id !== productId));
     } else {
       setFavorites([...favorites, productId]);
-    }
-  };
-
-  const addToCart = (product: Product) => {
-    const existingItem = cart.find(item => item.product.id === product.id);
-
-    if (existingItem) {
-      if (existingItem.quantity < product.stock) {
-        setCart(cart.map(item =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        ));
-      }
-    } else {
-      setCart([...cart, { product, quantity: 1 }]);
     }
   };
 
@@ -97,8 +77,6 @@ function HomePage() {
                     products={dealsUnder20}
                     favorites={favorites}
                     onToggleFavorite={toggleFavorite}
-                    cart={cart}
-                    onAddToCart={addToCart}
                   />
                 </div>
               );
@@ -119,8 +97,6 @@ function HomePage() {
                   products={categoryFiltered}
                   favorites={favorites}
                   onToggleFavorite={toggleFavorite}
-                  cart={cart}
-                  onAddToCart={addToCart}
                 />
               </div>
             );

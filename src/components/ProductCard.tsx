@@ -1,19 +1,21 @@
 import { Link } from "react-router";
 import type { Product } from "../types/product";
+import { useCartStore } from "../store/cartStore";
 
 function ProductCard({ 
     product,
     isFavorite,
     onToggleFavorite,
-    cartQuantity,
-    onAddToCart
 }: { 
     product: Product;
     isFavorite: boolean;
-    onToggleFavorite: () => void; 
-    cartQuantity: number;
-    onAddToCart: () => void;
+    onToggleFavorite: () => void;
 }) {
+    const addToCart = useCartStore((set) => set.addToCart);
+    const cartQuantity = useCartStore(
+        (set) => set.items.find((item) => item.product.id === product.id)?.quantity ?? 0
+    );
+
     return (
         <div className="border rounded-lg p-4 shadow-md max-w-xs relative bg-white dark:bg-slate-800">
             <Link to={`/products/${product.id}`}>
@@ -32,7 +34,7 @@ function ProductCard({
                 </span>
             </button>
             <button
-                onClick={onAddToCart}
+                onClick={() => addToCart(product)}
                 disabled={cartQuantity >= product.stock}
                 className="mt-2 w-full bg-green-900 text-white p-s rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
             >

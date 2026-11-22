@@ -1,33 +1,10 @@
-import { useOutletContext } from "react-router";
-import type { CartItem } from "../types/cart";
-
-type LayoutContext = {
-  cart: CartItem[];
-  setCart: (cart: CartItem[]) => void;
-  favorites: number[];
-  setFavorites: (favorites: number[]) => void;
-  isCartOpen: boolean;
-  setIsCartOpen: (open: boolean) => void;
-};
+import { useCartStore } from "../store/cartStore";
 
 function CartPage() {
-  const { cart, setCart } = useOutletContext<LayoutContext>();
-
-  const removeFromCart = (productId: number) => {
-    setCart(cart.filter(item => item.product.id !== productId));
-  };
-
-  const updateQuantity = (productId: number, quantity: number) => {
-    if (quantity < 1) {
-      removeFromCart(productId);
-    } else {
-      setCart(cart.map(item =>
-        item.product.id === productId
-          ? { ...item, quantity }
-          : item
-      ));
-    }
-  };
+  const cart = useCartStore((s) => s.items);
+  const increase = useCartStore((s) => s.increase);
+  const decrease = useCartStore((s) => s.decrease);
+  const removeFromCart = useCartStore((s) => s.removeFromCart);
 
   const subtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
 
@@ -58,14 +35,14 @@ function CartPage() {
                     <div className="flex items-start gap-4 mt-4">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                          onClick={() => decrease(item.product.id)}
                           className="px-2 py-1 border border-gray-300 dark:border-slate-600 rounded"
                         >
                           −
                         </button>
                         <span className="w-8 text-center">{item.quantity}</span>
                         <button
-                          onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                          onClick={() => increase(item.product.id)}
                           className="px-2 py-1 border border-gray-300 dark:border-slate-600 rounded"
                         >
                           +

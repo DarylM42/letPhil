@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { useAppContext } from "../context/AppContext";
 
 function Layout() {
-  const { theme, setTheme, cart, setCart, favorites, setFavorites, isCartOpen, setIsCartOpen } = useAppContext();
+  const { theme, setTheme, favorites, setFavorites, isCartOpen, setIsCartOpen } = useAppContext();
 
   return (
     <div className={theme === "dark" ? "dark" : ""}>
@@ -14,11 +14,10 @@ function Layout() {
           theme={theme}
           onThemeChange={(newTheme) => setTheme(newTheme)}
           favorites={favorites}
-          cart={cart}
           isCartOpen={isCartOpen}
           onOpenCart={() => setIsCartOpen(true)}
         />
-        <Outlet context={{ cart, setCart, favorites, setFavorites, isCartOpen, setIsCartOpen }} />
+        <Outlet context={{ favorites, setFavorites, isCartOpen, setIsCartOpen }} />
         <Footer companyName="SummitGear Market" />
       </main>
     </div>

@@ -1,12 +1,11 @@
 import { NavLink } from "react-router";
-import type { CartItem } from "../types/cart";
+import { useCartStore } from "../store/cartStore";
 
 function Navbar({ 
     companyName,
     theme,
     onThemeChange,
     favorites,
-    cart,
     isCartOpen,
     onOpenCart
  }: { 
@@ -14,10 +13,11 @@ function Navbar({
     theme: "light" | "dark";
     onThemeChange: (theme: "light" | "dark") => void;
     favorites: number[];
-    cart: CartItem[];
     isCartOpen: boolean;
     onOpenCart: () => void;
  }) {
+  const items = useCartStore((set) => set.items);
+
   return (
     <nav className="flex justify-between p-4 bg-white dark:bg-gray-900 text-black dark:text-white">
       <div className="flex items-center gap-2">
@@ -37,7 +37,7 @@ function Navbar({
         </NavLink>
 
         <NavLink to="/cart" className={({ isActive }) => isActive ? "font-bold text-green-800 bg-green-100 px-3 py-1 rounded" : ""}>
-          Cart <span className="bg-green-800 text-white rounded-full px-2 py-0.5 ml-1 text-sm">{cart.reduce((sum, item) => sum + item.quantity, 0)}</span>
+          Cart <span className="bg-green-800 text-white rounded-full px-2 py-0.5 ml-1 text-sm">{items.reduce((sum, item) => sum + item.quantity, 0)}</span>
         </NavLink>
 
         <button

@@ -1,12 +1,9 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
-import type { CartItem } from "../types/cart";
 import type { Product, ProductsResponse } from "../types/product";
 
 interface AppContextType {
   theme: "light" | "dark";
   setTheme: (theme: "light" | "dark") => void;
-  cart: CartItem[];
-  setCart: (cart: CartItem[]) => void;
   favorites: number[];
   setFavorites: (favorites: number[]) => void;
   isCartOpen: boolean;
@@ -20,7 +17,6 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [cart, setCart] = useState<CartItem[]>([]);
   const [favorites, setFavorites] = useState<number[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
@@ -56,8 +52,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       value={{
         theme,
         setTheme,
-        cart,
-        setCart,
         favorites,
         setFavorites,
         isCartOpen,

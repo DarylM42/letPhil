@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { useAppContext } from "../context/AppContext";
 import type { Product } from "../types/product";
+import { useCartStore } from "../store/cartStore";
 
 function ProductDetailPage() {
     const { id } = useParams();
 
-    const { cart, setCart, favorites, setFavorites } = useAppContext();
+    const { favorites, setFavorites } = useAppContext();
+    const cart = useCartStore((s) => s.items);
+    const addProductToCart = useCartStore((s) => s.addToCart);
 
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
@@ -52,19 +55,7 @@ function ProductDetailPage() {
 
     const addToCart = () => {
         if (!product) return;
-        if (cartItem) {
-            if (cartItem.quantity < product.stock) {
-                setCart(
-                    cart.map((item) =>
-                        item.product.id === product.id
-                            ? { ...item, quantity: item.quantity + 1 }
-                            : item
-                    )
-                );
-            }
-        } else {
-            setCart([...cart, { product, quantity: 1 }]);
-        }
+        addProductToCart(product);
     };
 
     const backLink = (

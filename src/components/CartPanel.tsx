@@ -1,19 +1,18 @@
-import type { CartItem } from "../types/cart";
 import EmptyState from "./EmptyState";
+import { useCartStore } from "../store/cartStore";
 
 function CartPanel({
-    cart,
     isOpen,
     onClose,
-    onRemove,
-    onUpdateQuantity
 }: {
-    cart: CartItem[];
     isOpen: boolean;
     onClose: () => void;
-    onRemove: (productId: number) => void;
-    onUpdateQuantity: (productId: number, quantity: number) => void;
 }) {
+    const cart = useCartStore((s) => s.items);
+    const increase = useCartStore((s) => s.increase);
+    const decrease = useCartStore((s) => s.decrease);
+    const removeFromCart = useCartStore((s) => s.removeFromCart);
+
     const subtotal = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
     return (
@@ -47,15 +46,15 @@ function CartPanel({
                                                         {item.quantity >= item.product.stock && <span className="text-orange-500 ml-2 font-bold">max reached</span>}
                                                     </p>
                                                     <div className="flex gap-2 mt-2">
-                                                        <button onClick={() => onUpdateQuantity(item.product.id, item.quantity - 1)} className="px-1 py-0 bg-gray-200 rounded text-sm">-</button>
+                                                        <button onClick={() => decrease(item.product.id)} className="px-1 py-0 bg-gray-200 rounded text-sm">-</button>
                                                         <span className="px-2 py-0 text-sm">{item.quantity}</span>
-                                                        <button onClick={() => onUpdateQuantity(item.product.id, item.quantity + 1)} disabled={item.quantity >= item.product.stock} className="px-1 py-0 bg-gray-200 rounded text-sm">+</button>
+                                                        <button onClick={() => increase(item.product.id)} disabled={item.quantity >= item.product.stock} className="px-1 py-0 bg-gray-200 rounded text-sm">+</button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="flex flex-col items-end justify-between">
                                                 <p className="font-bold">${(item.product.price * item.quantity).toFixed(2)}</p>
-                                                <button onClick={() => onRemove(item.product.id)} className="text-red-500 font-bold text-sm">Remove</button>
+                                                <button onClick={() => removeFromCart(item.product.id)} className="text-red-500 font-bold text-sm">Remove</button>
                                             </div>
                                         </div>
                                     </div>
