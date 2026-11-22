@@ -1,37 +1,18 @@
-import { useOutletContext } from "react-router";
 import ProductGrid from "../components/ProductGrid";
 import { useAppContext } from "../context/AppContext";
-
-type LayoutContext = {
-    favorites: number[];
-    setFavorites: (favorites: number[]) => void;
-    isCartOpen: boolean;
-    setIsCartOpen: (open: boolean) => void;
-};
+import { useFavoritesStore } from "../store/favoritesStore";
 
 function FavoritesPage() {
-    const { favorites, setFavorites } = useOutletContext<LayoutContext>();
+    const ids = useFavoritesStore((s) => s.ids);
     const { products } = useAppContext();
 
-    const favoriteProducts = products.filter(p => favorites.includes(p.id));
-
-    const toggleFavorite = (productId: number) => {
-        if (favorites.includes(productId)) {
-            setFavorites(favorites.filter((id) => id !== productId));
-        } else {
-            setFavorites([...favorites, productId]);
-        }
-    };
+    const favoriteProducts = products.filter(p => ids.includes(p.id));
 
     return (
         <>
             <h2 className="font-bold text-2xl mb-2">Your favorites</h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">{favoriteProducts.length} saved products</p>
-            <ProductGrid
-                products={favoriteProducts}
-                favorites={favorites}
-                onToggleFavorite={toggleFavorite}
-            />
+            <ProductGrid products={favoriteProducts} />
         </>
     );
 }

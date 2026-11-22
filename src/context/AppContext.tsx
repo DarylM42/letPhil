@@ -2,10 +2,6 @@ import { createContext, useContext, useState, useEffect, type ReactNode } from "
 import type { Product, ProductsResponse } from "../types/product";
 
 interface AppContextType {
-  theme: "light" | "dark";
-  setTheme: (theme: "light" | "dark") => void;
-  favorites: number[];
-  setFavorites: (favorites: number[]) => void;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
   products: Product[];
@@ -16,8 +12,6 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [favorites, setFavorites] = useState<number[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -50,10 +44,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   return (
     <AppContext.Provider
       value={{
-        theme,
-        setTheme,
-        favorites,
-        setFavorites,
         isCartOpen,
         setIsCartOpen,
         products,

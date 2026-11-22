@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { useAppContext } from "../context/AppContext";
 import type { Product } from "../types/product";
 import { useCartStore } from "../store/cartStore";
+import { useFavoritesStore } from "../store/favoritesStore";
 
 function ProductDetailPage() {
     const { id } = useParams();
 
-    const { favorites, setFavorites } = useAppContext();
+    const isFavorite = useFavoritesStore((s) => s.isFavorite(Number(id)));
+    const toggleFavoriteInStore = useFavoritesStore((s) => s.toggleFavorite);
     const cart = useCartStore((s) => s.items);
     const addProductToCart = useCartStore((s) => s.addToCart);
 
@@ -40,17 +41,12 @@ function ProductDetailPage() {
         fetchProduct();
     }, [id]);
 
-    const isFavorite = product ? favorites.includes(product.id) : false;
     const cartItem = product ? cart.find((item) => item.product.id === product.id) : undefined;
     const cartQuantity = cartItem ? cartItem.quantity : 0;
 
     const toggleFavorite = () => {
         if (!product) return;
-        if (isFavorite) {
-            setFavorites(favorites.filter((favId) => favId !== product.id));
-        } else {
-            setFavorites([...favorites, product.id]);
-        }
+        toggleFavoriteInStore(product.id);
     };
 
     const addToCart = () => {

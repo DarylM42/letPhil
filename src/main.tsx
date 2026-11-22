@@ -1,15 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter } from "react-router";
 import "./index.css";
-import Layout from "./pages/Layout";
-import HomePage from "./pages/HomePage";
-import FavoritesPage from "./pages/FavoritesPage";
-import CartPage from "./pages/CartPage";
-import SuggestProductForm from "./components/SuggestProductForm";
+import App from "./App";
 import { AppProvider } from "./context/AppContext";
-import ProductDetailPage from "./pages/ProductDetailPage";
-import NotFoundPage from "./pages/NotFoundPage";
 
 const root = document.getElementById("root");
 
@@ -17,16 +11,7 @@ ReactDOM.createRoot(root!).render(
   <React.StrictMode>
     <AppProvider>
       <BrowserRouter>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path="favorites" element={<FavoritesPage />} />
-            <Route path="cart" element={<CartPage />} />
-            <Route path="products/:id" element={<ProductDetailPage />} />
-            <Route path="suggest" element={<SuggestProductForm />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
+        <App />
       </BrowserRouter>
     </AppProvider>
   </React.StrictMode>

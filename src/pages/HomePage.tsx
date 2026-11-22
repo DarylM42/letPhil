@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useOutletContext } from "react-router";
 import ProductGrid from "../components/ProductGrid";
 import SearchBar from "../components/SearchBar";
 import EmptyState from "../components/EmptyState";
@@ -8,15 +7,7 @@ import Stats from "../components/Stats";
 import { groupByCategory } from "../utils/groupByCategory";
 import { useAppContext } from "../context/AppContext";
 
-type LayoutContext = {
-  favorites: number[];
-  setFavorites: (favorites: number[]) => void;
-  isCartOpen: boolean;
-  setIsCartOpen: (open: boolean) => void;
-};
-
 function HomePage() {
-  const { favorites, setFavorites } = useOutletContext<LayoutContext>();
   const { products, loading, error } = useAppContext();
   const [searchText, setSearchText] = useState("");
 
@@ -29,14 +20,6 @@ function HomePage() {
   const filteredProducts = products.filter(p =>
     p.title.toLowerCase().includes(searchText.toLowerCase())
   );
-
-  const toggleFavorite = (productId: number) => {
-    if (favorites.includes(productId)) {
-      setFavorites(favorites.filter((id) => id !== productId));
-    } else {
-      setFavorites([...favorites, productId]);
-    }
-  };
 
   return (
     <>
@@ -75,8 +58,6 @@ function HomePage() {
                   <h2 className="font-bold text-lg p-2">Deals under $20</h2>
                   <ProductGrid
                     products={dealsUnder20}
-                    favorites={favorites}
-                    onToggleFavorite={toggleFavorite}
                   />
                 </div>
               );
@@ -95,8 +76,6 @@ function HomePage() {
                 <h2 className="font-bold text-lg p-2 capitalize">{category}</h2>
                 <ProductGrid
                   products={categoryFiltered}
-                  favorites={favorites}
-                  onToggleFavorite={toggleFavorite}
                 />
               </div>
             );

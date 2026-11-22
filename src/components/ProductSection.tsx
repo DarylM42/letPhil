@@ -5,14 +5,10 @@ function ProductSection({
     category,
     count,
     products,
-    favorites,
-    onToggleFavorite,
 }: {
     category: string,
     count: number;
     products: Product[];
-    favorites: number[];
-    onToggleFavorite: (id: number) => void;
 }) {
     return (
         <div>
@@ -20,11 +16,7 @@ function ProductSection({
                 {category.charAt(0).toUpperCase() + category.slice(1)}
                 <span className="text-gray-400"> ({count})</span>
             </h2>
-            <ProductGrid
-                products={products}
-                favorites={favorites}
-                onToggleFavorite={onToggleFavorite}
-            />
+            <ProductGrid products={products} />
         </div>
     );
 }
