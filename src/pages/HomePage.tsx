@@ -8,13 +8,8 @@ import { groupByCategory } from "../utils/groupByCategory";
 import { useAppContext } from "../context/AppContext";
 
 function HomePage() {
-  const { products, loading, error } = useAppContext();
+  const { products, loading, error, retryFetch } = useAppContext();
   const [searchText, setSearchText] = useState("");
-
-  const retryFetch = async () => {
-    // Products are fetched in AppContext on mount
-    window.location.reload();
-  };
 
   const grouped = groupByCategory(products);
   const filteredProducts = products.filter(p =>

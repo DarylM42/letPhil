@@ -1,10 +1,11 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
 import type { Product, ProductsResponse } from "../types/product";
 
 interface AppContextType {
   products: Product[];
   loading: boolean;
   error: string;
+  retryFetch: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -14,29 +15,29 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      setError("");
+  const fetchProducts = useCallback(async () => {
+    setLoading(true);
+    setError("");
 
-      try {
-        const res = await fetch("https://dummyjson.com/products");
+    try {
+      const res = await fetch("https://dummyjson.com/products");
 
-        if (!res.ok) {
-          throw new Error("Failed to load products");
-        }
-
-        const data: ProductsResponse = await res.json();
-        setProducts(data.products);
-      } catch (err) {
-        setError("Unable to load products. Please try again.");
-      } finally {
-        setLoading(false);
+      if (!res.ok) {
+        throw new Error("Failed to load products");
       }
-    };
 
-    fetchProducts();
+      const data: ProductsResponse = await res.json();
+      setProducts(data.products);
+    } catch (err) {
+      setError("Unable to load products. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+    useEffect(() => {
+      fetchProducts();
+    }, [fetchProducts]);
 
   return (
     <AppContext.Provider
@@ -44,6 +45,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         products,
         loading,
         error,
+        retryFetch: fetchProducts,
       }}
     >
       {children}
