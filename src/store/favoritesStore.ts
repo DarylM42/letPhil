@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type FavoritesState = {
     ids: number[];
@@ -6,15 +7,20 @@ type FavoritesState = {
     isFavorite: (id: number) => boolean;
 };
 
-export const useFavoritesStore = create<FavoritesState>((set, get) => ({
-    ids: [],
+export const useFavoritesStore = create<FavoritesState>()(
+    persist(
+        (set, get) => ({
+            ids: [],
 
-    toggleFavorite: (id) =>
-        set((state) => ({
-            ids: state.ids.includes(id)
-                ? state.ids.filter((favId) => favId !== id)
-                : [...state.ids, id],
-        })),
+            toggleFavorite: (id) =>
+                set((state) => ({
+                    ids: state.ids.includes(id)
+                        ? state.ids.filter((favId) => favId !== id)
+                        : [...state.ids, id],
+                })),
 
-    isFavorite: (id) => get().ids.includes(id),
-}));
+            isFavorite: (id) => get().ids.includes(id),
+        }),
+        { name: "summitgear-favorites" }
+    )
+);
