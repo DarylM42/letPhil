@@ -5,12 +5,8 @@ import { useFavoritesStore } from "../store/favoritesStore";
 
 function Navbar({
     companyName,
-    isCartOpen,
-    onOpenCart
  }: {
     companyName: string;
-    isCartOpen: boolean;
-    onOpenCart: () => void;
  }) {
   const items = useCartStore((s) => s.items);
   const favoritesCount = useFavoritesStore((s) => s.ids.length);

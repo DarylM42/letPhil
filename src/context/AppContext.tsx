@@ -2,8 +2,6 @@ import { createContext, useContext, useState, useEffect, type ReactNode } from "
 import type { Product, ProductsResponse } from "../types/product";
 
 interface AppContextType {
-  isCartOpen: boolean;
-  setIsCartOpen: (open: boolean) => void;
   products: Product[];
   loading: boolean;
   error: string;
@@ -12,7 +10,6 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -44,8 +41,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   return (
     <AppContext.Provider
       value={{
-        isCartOpen,
-        setIsCartOpen,
         products,
         loading,
         error,
