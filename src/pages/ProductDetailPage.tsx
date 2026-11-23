@@ -17,12 +17,16 @@ function ProductDetailPage() {
     const [error, setError] = useState("");
 
     useEffect(() => {
+        const controller = new AbortController();
+
         const fetchProduct = async () => {
             setLoading(true);
             setError("");
 
             try {
-                const res = await fetch(`https://dummyjson.com/products/${id}`);
+                const res = await fetch(`https://dummyjson.com/products/${id}`, {
+                    signal: controller.signal,
+                });
 
                 if (!res.ok) {
                     throw new Error("Product not found");
@@ -31,14 +35,19 @@ function ProductDetailPage() {
                 const data: Product = await res.json();
                 setProduct(data);
             } catch (err) {
+                if (controller.signal.aborted) return;
                 setProduct(null);
                 setError(`We couldn't find a product with id ${id}.`);
             } finally {
-                setLoading(false);
+                if (!controller.signal.aborted) {
+                    setLoading(false);
+                }
             }
         };
 
         fetchProduct();
+
+        return () => controller.abort();
     }, [id]);
 
     const cartItem = product ? cart.find((item) => item.product.id === product.id) : undefined;
