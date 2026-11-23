@@ -1,17 +1,50 @@
+import { Link } from "react-router";
 import type { Product } from "../types/product";
+import { useCartStore } from "../store/cartStore";
+import { useFavoritesStore } from "../store/favoritesStore";
 
 function ProductCard({ product }: { product: Product }) {
+    const addToCart = useCartStore((s) => s.addToCart);
+    const cartQuantity = useCartStore(
+        (s) => s.items.find((item) => item.product.id === product.id)?.quantity ?? 0
+    );
+    const isFavorite = useFavoritesStore((s) => s.isFavorite(product.id));
+    const toggleFavorite = useFavoritesStore((s) => s.toggleFavorite);
+
     return (
-        <div className="border rounded-lg p-4 shadow-md max-w-xs relative">
-            <img src={product.thumbnail} alt="Product image" />
+        <div className="border rounded-lg p-4 shadow-md max-w-xs relative bg-white dark:bg-slate-800">
+            <Link to={`/products/${product.id}`}>
+                <div className="bg-gray-200 dark:bg-slate-700 rounded p-2 mb-2">
+                    <img src={product.thumbnail} alt="Product image" />
+                </div>
+            </Link>
+            <button
+                onClick={() => toggleFavorite(product.id)}
+                className={`absolute top-6 right-6 text-2xl rounded-full w-8 h-8 flex items-center justify-center border-none cursor-pointer ${
+                    isFavorite ? "bg-pink-100" : "bg-white"
+                }`}
+            >
+                <span style={{ color: isFavorite ? "red" : "gray" }} className="text-2xl">
+                    {isFavorite ? "♥" : "♡"}
+                </span>
+            </button>
+            <button
+                onClick={() => addToCart(product)}
+                disabled={cartQuantity >= product.stock}
+                className="mt-2 w-full bg-green-900 text-white p-s rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
+            >
+                Add to cart
+            </button>
             {product.brand && <div>{product.brand}</div>}
-            <div className="font-bold text-black-600">{product.title}</div>
+            <Link to={`/products/${product.id}`} className="font-bold hover:underline">
+                {product.title}
+            </Link>
             <div className="flex justify-between">
                 <div className="font-bold text-green-600">${product.price.toFixed(2)}</div>
                 <div className="text-gray-500">★ {product.rating}</div>
             </div>
             {product.stock < 10 && (
-                <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-sm">
+                <div className="absolute top-6 left-6 bg-yellow-100 text-orange-800 px-3 py-1 rounded-full text-sm font-bold">
                     Low stock
                 </div>
             )}
