@@ -15,6 +15,8 @@ function HomePage() {
   const filteredProducts = products.filter(p =>
     p.title.toLowerCase().includes(searchText.toLowerCase())
   );
+  const topRated = filteredProducts.filter(p => p.stock > 0 && p.rating >= 4.5);
+  const luxury = filteredProducts.filter(p => p.price > 5000);
 
   return (
     <>
@@ -58,6 +60,20 @@ function HomePage() {
               );
             }
           })()}
+
+          {topRated.length > 0 && (
+            <div className="mb-8">
+              <h2 className="font-bold text-lg p-2">Top rated</h2>
+              <ProductGrid products={topRated} />
+            </div>
+          )}
+
+          {luxury.length > 0 && (
+            <div className="mb-8">
+              <h2 className="font-bold text-lg p-2">Luxury (over $5,000)</h2>
+              <ProductGrid products={luxury} />
+            </div>
+          )}
 
           {Object.entries(grouped).map(([category, categoryProducts]) => {
             const categoryFiltered = searchText
