@@ -34,6 +34,10 @@ function Navbar({
         <NavLink to="/cart" className={({ isActive }) => isActive ? "font-bold text-green-800 bg-green-100 px-3 py-1 rounded" : ""}>
           Cart <span className="bg-green-800 text-white rounded-full px-2 py-0.5 ml-1 text-sm">{items.reduce((sum, item) => sum + item.quantity, 0)}</span>
         </NavLink>
+        
+        <NavLink to="/suggest" className={({ isActive }) => isActive ? "font-bold text-green-800 bg-green-100 px-3 py-1 rounded" : ""}>
+          Suggest
+        </NavLink>
 
         <button
           onClick={toggleTheme}
