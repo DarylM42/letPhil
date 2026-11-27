@@ -1,10 +1,11 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useCartStore } from "../store/cartStore";
 import type { CheckoutErrors, CheckoutForm } from "../types/checkout";
 import CheckoutSteps from "../components/CheckoutSteps";
 import OrderSummary from "../components/OrderSummary";
+import type { Order } from "../types/order";
 
 const emptyForm: CheckoutForm = {
     name: "",
@@ -55,6 +56,8 @@ function validatePayment(form: CheckoutForm): CheckoutErrors {
 
 function CheckoutPage() {
     const items = useCartStore((s) => s.items);
+    const clearCart = useCartStore((s) => s.clearCart);
+    const navigate = useNavigate();
 
     const [step, setStep] = useState(1);
     const [form, setForm] = useState<CheckoutForm>(emptyForm);
@@ -86,6 +89,18 @@ function CheckoutPage() {
     };
 
     const handleBack = () => goToStep(step - 1);
+
+    const handlePlaceOrder = () => {
+        const order: Order = {
+            orderNumber: `SGM-${Math.floor(10000 + Math.random() * 90000)}`,
+            name: form.name.trim(),
+            items,
+            total,
+        };
+
+        clearCart();
+        navigate("/order-confirmation", { state: order });
+    };
 
     const inputClass = (field: keyof CheckoutForm) =>
         `w-full border rounded px-3 py-2 bg-white dark:bg-slate-900 ${
@@ -221,7 +236,7 @@ function CheckoutPage() {
                             )}
                         </div>
 
-                        <OrderSummary />
+                        <OrderSummary title="Order summary" />
                     </>
                 ) : (
                     <>
@@ -270,9 +285,9 @@ function CheckoutPage() {
                                 >
                                     ← Back
                                 </button>
-                                {/* Placeholder: ticket 8.2 makes this create the order */}
                                 <button
                                     type="button"
+                                    onClick={handlePlaceOrder}
                                     className="flex-1 bg-green-700 text-white px-4 py-2 rounded font-semibold hover:bg-green-800"
                                 >
                                     Place order · ${total.toFixed(2)}

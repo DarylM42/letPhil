@@ -1,19 +1,23 @@
 import { useCartStore } from "../store/cartStore";
+import type { CartItem } from "../types/cart";
 
 type OrderSummaryProps = {
     title?: string;
+    items?: CartItem[];
+    totalLabel?: string;
 };
 
-function OrderSummary({ title = "Order summary" }: OrderSummaryProps) {
-    const items = useCartStore((s) => s.items);
-    const total = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+function OrderSummary({ title, items, totalLabel = "Total" }: OrderSummaryProps) {
+    const cartItems = useCartStore((s) => s.items);
+    const list = items ?? cartItems;
+    const total = list.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
     return (
         <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-6 h-fit">
-            <h2 className="text-xl font-bold mb-4">{title}</h2>
+            {title && <h2 className="text-xl font-bold mb-4">{title}</h2>}
 
             <div className="space-y-4">
-                {items.map((item) => {
+                {list.map((item) => {
                     const maxReached = item.quantity === item.product.stock;
 
                     return (
@@ -40,7 +44,7 @@ function OrderSummary({ title = "Order summary" }: OrderSummaryProps) {
             </div>
 
             <div className="flex justify-between mt-4 text-lg font-bold">
-                <span>Total</span>
+                <span>{totalLabel}</span>
                 <span>${total.toFixed(2)}</span>
             </div>
         </div>
